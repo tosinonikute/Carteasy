@@ -13,51 +13,38 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Created by tech6 on 10/28/15.
+ *  Created by tech6 on 10/28/15.
  *
- * printJsonObject function prints a vaue based on the key and id given
+ *  This class takes care of retreiving data from JSON file and looping through it to return values to the user.
  *
- * View function returns a array of values based on id given
- *
- * ViewAll function returns all values saved
  */
 public class GetData {
 
     private Boolean nested = false;
     private Object returnvalue;
+    private Object printJsonvalue;
 
-    //Print json objects by given id and key
-    public Object printJsonObject(String mid, String mkey, JSONObject jobj, Context context) {
 
+    /*
+       getFile function looks for the file and passes it to the printJsonObject function which loops through it and
+       displays the content of the file.
+     */
+    public Object getFile(String mid, String mkey, Context context) {
+
+        returnvalue = "";
         ContextWrapper cw = new ContextWrapper(context);
         File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
-        // Create imageDir
+
+        // Create imageDir in applications default directory
         File mypath = new File(directory, "test.json");
         JSONParser parser = new JSONParser();
         try {
 
             Object obj = parser.parse(new FileReader(mypath));
             JSONObject jsonObj = (JSONObject) obj;
-            for (Object key : jsonObj.keySet()) {
-                //based on you key types
-                String keyStr = (String) key;
-                Object keyvalue = jsonObj.get(keyStr);
+            //System.out.println("Keyvalue: "+jsonObj);
+            returnvalue = printJsonObject(mid, mkey, jsonObj);
 
-                //Print key and value
-                if (nested == true) {
-                    if (keyStr.equals(mkey)) {
-                        returnvalue = keyvalue;
-                        //System.out.println("Keyvalue: "+keyvalue);
-                    }
-                }
-                //System.out.println("key: "+ keyStr + " value: " + keyvalue);
-
-                //for nested objects iteration if required
-                if (keyvalue instanceof JSONObject) {
-                    nested = true;
-                    printJsonObject(mid, mkey, (JSONObject) keyvalue, context);
-                }
-            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -69,11 +56,58 @@ public class GetData {
     }
 
 
+    /*
+       printJsonObject function recieves file from getFile function and picks the file as an object and loop
+       through it based on the key and values given.
+     */
+    public Object printJsonObject(String mid, String mkey, JSONObject jsonObj) {
+
+        printJsonvalue = "";
+        for (Object key : jsonObj.keySet()) {
+            //based on you key types
+            String keyStr = (String) key;
+            Object keyvalue = jsonObj.get(keyStr);
+
+            //System.out.println("key: "+ keyStr + " value: " + keyvalue);
+
+            //Loops for the second time for nested objects iteration if required
+            if (keyvalue instanceof JSONObject) {
+                //printJsonObject(mid, mkey, (JSONObject) keyvalue);
+
+                JSONObject newJsonObj = (JSONObject) keyvalue;
+                for (Object key2 : newJsonObj.keySet()) {
+                    //based on you key types
+                    String keyStr2 = (String) key2;
+                    Object keyvalue2 = newJsonObj.get(keyStr2);
+
+                        //return value
+                        if (keyStr2.equals(mkey)) {
+                            printJsonvalue = keyvalue2;
+                            //System.out.println("Keyvalue2: "+keyvalue2);
+                        }
+
+                }
+            }
+        }
+       return printJsonvalue;
+    }
+
+
+    /*
+       View function returns a array of values based on id given
+       This works best if the user specify for example:  user specifies id as 1243, and productname as key,
+       It returns the respective Value of the key.
+    */
     public void view(String id, String key, JSONObject jsonObj, Context context) {
 
     }
 
 
+
+    /*
+      ViewAll returns all values the values saved for example:
+      id , productname, product_desc, isbn_no, qunatity e.t.c
+    */
     public void viewAll(Context context) {
 
     }

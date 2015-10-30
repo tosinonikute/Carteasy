@@ -20,11 +20,7 @@ import org.json.simple.parser.ParseException;
 /**
  * Created by tech6 on 10/19/15.
  *
- * Add function adds each value to items JSONobject
- *
- * Commit function calls the save function in SaveData class
- *
- * get function calls the GetData class to retrieve values based on key and value given
+ * This Class is the main class which calls functions from other classes when neccessary to perform operations.
  */
 public class Carteasy {
 
@@ -33,66 +29,35 @@ public class Carteasy {
     private String uniqueid;
 
 
-    //Receive values as objects and typecast to appropriate type
+    //This function Receive values as objects and ties them with an ID
     public void add(String id, String key, Object value){
         uniqueid = id;
 
-        //if Value is Double
-        if(value.getClass()==Double.class){
-            Double newvalue = (Double)value;
-            products.put(key, new Double(newvalue));
-        }
-        //if Value is Float
-        if(value.getClass()==Float.class){
-            Float newvalue = (Float)value;
-            products.put(key, new Float(newvalue));
-        }
-        //if Value is String
-        if(value.getClass()==String.class){
-            String newvalue = (String)value;
-            products.put(key, new String(newvalue));
-        }
-        //if Value is Integer
-        if(value.getClass()==Integer.class){
-            Integer newvalue = (Integer)value;
-            products.put(key, new Integer(newvalue));
-        }
-        //if Value is Character
-        if(value.getClass()==Character.class){
-            Character newvalue = (Character)value;
-            products.put(key, new Character(newvalue));
-        }
-        //if Value is Long
-        if(value.getClass()==Long.class){
-            Long newvalue = (Long)value;
-            products.put(key, new Long(newvalue));
-        }
-        //if Value is Short
-        if(value.getClass()==Short.class){
-            Short newvalue = (Short)value;
-            products.put(key, new Short(newvalue));
-        }
-
-
+        products.put(key, value);
         //Store in items
         items.put(id, products);
 
-        System.out.println("itemvalue: " + items);
+        //System.out.println("itemvalue: " + items);
     }
 
 
-   //save data
+    //This function calls the commit function in SaveData Class to save user's input to file.
    public String commit(Context context){
        SaveData sd = new SaveData();
        return sd.save(context, items, uniqueid);
    }
 
 
-
-    //Get objects value by given id and key
+    //This function retreives objects value by given id and key and displays it
     public Object get(String id, String key, Context context){
         GetData gd = new GetData();
-        return gd.printJsonObject(id, key, items, context);
+        return gd.getFile(id, key, context);
+    }
+
+    //This function calls the update function in SaveData Class and updates user's input data
+    public Object update(String mid, String mkey, Object newvalue, Context context){
+        SaveData sd = new SaveData();
+        return sd.updateValue(mid, mkey, newvalue, context);
     }
 
 
