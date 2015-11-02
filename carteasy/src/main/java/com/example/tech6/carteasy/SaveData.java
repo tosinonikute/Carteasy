@@ -39,7 +39,6 @@ public class SaveData {
         File mypath = new File(directory, "test.json");
 
         if(mypath.exists()){
-            System.out.println("Exist");
             JSONParser parser = new JSONParser();
             try {
 
