@@ -37,14 +37,13 @@ public class Carteasy {
         //Store in items
         items.put(id, products);
 
-        //System.out.println("itemvalue: " + items);
     }
 
 
     //This function calls the commit function in SaveData Class to save user's input to file.
-   public String commit(Context context){
+   public void commit(Context context){
        SaveData sd = new SaveData();
-       return sd.save(context, items, uniqueid);
+       sd.save(context, items, uniqueid);
    }
 
 
@@ -55,18 +54,10 @@ public class Carteasy {
     }
 
     //This function calls the update function in SaveData Class and updates user's input data
-    public Object update(String mid, String mkey, Object newvalue, Context context){
+    public void update(String mid, String mkey, Object newvalue, Context context){
         SaveData sd = new SaveData();
-        return sd.updateValue(mid, mkey, newvalue, context);
+        sd.updateValue(mid, mkey, newvalue, context);
     }
-
-
-
-
-
-
-
-
 
 
 
