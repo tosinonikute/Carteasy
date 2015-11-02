@@ -26,9 +26,7 @@ public class SaveData {
        Save function checkes if file exist, recieves data from User
        Appends it and saves into users default app data storage space.
     */
-    public String save(Context context, JSONObject items, String mid){
-
-        String returnvalue = "data not saved";
+    public void save(Context context, JSONObject items, String mid){
 
         /*
            This retrieves the file from default application data storage if it exist.
@@ -50,10 +48,10 @@ public class SaveData {
                 JSONObject jsonObj = (JSONObject) obj;
                 if(!checkIfIdExist(mid, jsonObj)) {
                     for (Object key : jsonObj.keySet()) {
+
                         //based on you key types
                         String keyStr = (String) key;
                         Object keyvalue = jsonObj.get(keyStr);
-                        System.out.println("Keyvalue: " + keyvalue);
 
                         if (keyvalue instanceof JSONObject) {
                             System.out.println("keyStr: " + keyStr);
@@ -69,11 +67,11 @@ public class SaveData {
                     filez.flush();
                     filez.close();
 
-                    returnvalue = "data saved";
+                    System.out.println("=>data_saved");
 
                 } else {
 
-                    returnvalue = mid+" exist";
+                    //
                 }
 
 
@@ -105,18 +103,99 @@ public class SaveData {
             }
         }
 
-        return returnvalue;
     }
 
 
     /*
         UpdateValue function iterates through the existing data and updates a value based on its key and id
-        -> IN PROGRESS
+        -> COMPLETED
     */
-    public Object updateValue(String mid, String mkey, Object newvalue, Context context){
-        
+    public void updateValue(String mid, String mkey, Object newvalue, Context context){
 
-        return newvalue;
+        /* Create a new JSON object items to store values */
+        JSONObject items = new JSONObject();
+
+        ContextWrapper cw = new ContextWrapper(context);
+        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+
+        // Create imageDir in applications default directory
+        File mypath = new File(directory, "test.json");
+
+        if(mypath.exists()){
+
+            JSONParser parser = new JSONParser();
+            try {
+
+                Object obj = parser.parse(new FileReader(mypath));
+                JSONObject jsonObj = (JSONObject) obj;
+                System.out.println("hellokey");
+
+                /* Checks if both the ID and Key exist, if not print an Error message */
+                if(checkIfIdExist(mid, jsonObj)) {
+                    if (checkIfKeyExist(mid, mkey, jsonObj)) {
+
+                        for (Object key : jsonObj.keySet()) {
+
+                            //based on you key types
+                            String keyStr = (String) key;
+                            Object keyvalue = jsonObj.get(keyStr);
+
+
+                            //for nested objects iteration if required
+                            if(keyvalue instanceof JSONObject) {
+
+                                JSONObject products = new JSONObject();
+
+                                /* Loop the JSON object again for nested object */
+                                JSONObject newJsonObj = (JSONObject) keyvalue;
+                                for (Object key2 : newJsonObj.keySet()) {
+
+                                    //based on you key types
+                                    String keyStr2 = (String) key2;
+                                    Object keyvalue2 = newJsonObj.get(keyStr2);
+
+                                    if (keyStr.equals(mid)) {
+                                        if (keyStr2.equals(mkey)) {
+                                            keyvalue2 = newvalue;
+
+                                            /* Notify the user that it has been updated */
+                                            System.out.println(mid + "=>" + mkey + "=>" + newvalue + "=>updated");
+                                        }
+                                    }
+                                    products.put(keyStr2, keyvalue2);
+                                }
+                                items.put(keyStr, products);
+                            }
+
+                            //Push to file
+                            FileWriter filez = new FileWriter(mypath);
+                            filez.write(items.toJSONString());
+                            filez.flush();
+                            filez.close();
+                        }
+
+                    } else {
+                        System.out.println("Key does not exist");
+                    }
+                } else {
+                    System.out.println("ID does not exist");
+                }
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+        }else {
+
+            //Path does not exist
+        }
+
     }
 
 
@@ -150,7 +229,6 @@ public class SaveData {
 
                                 //return value
                                 if (keyStr2.equals(mkey)) {
-                                    //System.out.println("keyStr: " + keyStr2 + " keyValue: " + keyvalue2);
                                     exist = true;
                                 }
 
