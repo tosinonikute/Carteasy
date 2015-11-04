@@ -1,20 +1,8 @@
 package com.example.tech6.carteasy;
 
 import android.content.Context;
-import android.content.ContextWrapper;
-import android.util.Log;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Iterator;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import org.json.simple.parser.ParseException;
 
 
 /**
@@ -57,6 +45,52 @@ public class Carteasy {
     public void update(String mid, String mkey, Object newvalue, Context context){
         SaveData sd = new SaveData();
         sd.updateValue(mid, mkey, newvalue, context);
+    }
+
+    //This function removes any key specified by the user
+    public void Removekey(String mid, String mkey, Context context){
+        RemoveData rm = new RemoveData();
+        rm.RemoveDataByKey(mid, mkey, context);
+    }
+
+
+    //This function removes data based on any key specified by the user
+    public void Removeid(String mid, Context context){
+        RemoveData rm = new RemoveData();
+        rm.RemoveDataById(mid, context);
+    }
+
+
+    /** This functions below will retrieve data and typecast it before returning it the user **/
+
+    public String getString(String id, String key, Context context){
+        String value = "";
+        return value;
+    }
+
+    public Integer getInteger(String id, String key, Context context){
+        Integer value = 0;
+        return value;
+    }
+
+    public Float getFloat(String id, String key, Context context){
+        float value = 0;
+        return value;
+    }
+
+    public Double getDouble(String id, String key, Context context){
+        Double value = 0.2;
+        return value;
+    }
+
+    public Long getLong(String id, String key, Context context){
+        Long value = 9484480494l;
+        return value;
+    }
+
+    public Short getShort(String id, String key, Context context){
+        Short value = 9446;
+        return value;
     }
 
 
