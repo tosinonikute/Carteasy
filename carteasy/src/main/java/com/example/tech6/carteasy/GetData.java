@@ -81,10 +81,12 @@ public class GetData {
                     Object keyvalue2 = newJsonObj.get(keyStr2);
 
                         //return value
+                    if (keyStr.equals(mid)) {
                         if (keyStr2.equals(mkey)) {
                             printJsonvalue = keyvalue2;
                             //System.out.println("Keyvalue2: "+keyvalue2);
                         }
+                    }
 
                 }
             }

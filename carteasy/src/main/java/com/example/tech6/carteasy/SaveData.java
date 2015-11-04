@@ -26,9 +26,7 @@ public class SaveData {
        Save function checkes if file exist, recieves data from User
        Appends it and saves into users default app data storage space.
     */
-    public String save(Context context, JSONObject items, String mid){
-
-        String returnvalue = "data not saved";
+    public void save(Context context, JSONObject items, String mid){
 
         /*
            This retrieves the file from default application data storage if it exist.
@@ -50,10 +48,10 @@ public class SaveData {
                 JSONObject jsonObj = (JSONObject) obj;
                 if(!checkIfIdExist(mid, jsonObj)) {
                     for (Object key : jsonObj.keySet()) {
+
                         //based on you key types
                         String keyStr = (String) key;
                         Object keyvalue = jsonObj.get(keyStr);
-                        System.out.println("Keyvalue: " + keyvalue);
 
                         if (keyvalue instanceof JSONObject) {
                             System.out.println("keyStr: " + keyStr);
@@ -69,11 +67,11 @@ public class SaveData {
                     filez.flush();
                     filez.close();
 
-                    returnvalue = "data saved";
+                    System.out.println("=>data_saved");
 
                 } else {
 
-                    returnvalue = mid+" exist";
+                    //
                 }
 
 
@@ -105,7 +103,6 @@ public class SaveData {
             }
         }
 
-        return returnvalue;
     }
 
 
@@ -113,17 +110,15 @@ public class SaveData {
         UpdateValue function iterates through the existing data and updates a value based on its key and id
         -> IN PROGRESS
     */
-    public Object updateValue(String mid, String mkey, Object newvalue, Context context){
+    public void updateValue(String mid, String mkey, Object newvalue, Context context){
 
-
-
-        String returnvalue = "data not updated";
+        /* Create a new JSON object items to store values */
         JSONObject items = new JSONObject();
-        JSONObject products = new JSONObject();
 
         ContextWrapper cw = new ContextWrapper(context);
         File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
-        // Create imageDir
+
+        // Create imageDir in applications default directory
         File mypath = new File(directory, "test.json");
 
         if(mypath.exists()){
@@ -134,53 +129,57 @@ public class SaveData {
                 Object obj = parser.parse(new FileReader(mypath));
                 JSONObject jsonObj = (JSONObject) obj;
                 System.out.println("hellokey");
-                //if(checkIfKeyExist(mid, mkey, jsonObj)) {
 
-                    System.out.println("hellokey");
+                /* Checks if both the ID and Key exist, if not print an Error message */
+                if(checkIfIdExist(mid, jsonObj)) {
+                    if (checkIfKeyExist(mid, mkey, jsonObj)) {
 
-                    for (Object key : jsonObj.keySet()) {
-                        //based on you key types
-                        String keyStr = (String) key;
-                        Object keyvalue = jsonObj.get(keyStr);
+                        for (Object key : jsonObj.keySet()) {
 
-                        System.out.println("key: "+ keyStr + " value: " + keyvalue);
+                            //based on you key types
+                            String keyStr = (String) key;
+                            Object keyvalue = jsonObj.get(keyStr);
 
-                        //for nested objects iteration if required
-                        if (keyvalue instanceof JSONObject) {
-                            //printJsonObject(mid, mkey, (JSONObject) keyvalue);
 
-                            JSONObject newJsonObj = (JSONObject) keyvalue;
-                            for (Object key2 : newJsonObj.keySet()) {
-                                //based on you key types
-                                String keyStr2 = (String) key2;
-                                Object keyvalue2 = newJsonObj.get(keyStr2);
-                                //System.out.println("Keyvalue1: "+keyvalue2);
-                                //System.out.println("Key: "+key2);
-                                //return value
-                                if (keyStr.equals(mid)) {
-                                    System.out.println("Keyvalue11: "+keyvalue2);
-                                    keyvalue2 = newvalue;
-                                    System.out.println("Keyvalue22: "+keyvalue2);
+                            //for nested objects iteration if required
+                            if(keyvalue instanceof JSONObject) {
+
+                                JSONObject products = new JSONObject();
+
+                                /* Loop the JSON object again for nested object */
+                                JSONObject newJsonObj = (JSONObject) keyvalue;
+                                for (Object key2 : newJsonObj.keySet()) {
+
+                                    //based on you key types
+                                    String keyStr2 = (String) key2;
+                                    Object keyvalue2 = newJsonObj.get(keyStr2);
+
+                                    if (keyStr.equals(mid)) {
+                                        if (keyStr2.equals(mkey)) {
+                                            keyvalue2 = newvalue;
+
+                                            /* Notify the user that it has been updated */
+                                            System.out.println(mid + "=>" + mkey + "=>" + newvalue + "=>updated");
+                                        }
+                                    }
+                                    products.put(keyStr2, keyvalue2);
                                 }
-                                products.put(keyStr2, keyvalue2);
-                                System.out.println("KeyStr:"+keyStr2+" Keyvalue1: " + keyvalue2);
+                                items.put(keyStr, products);
                             }
-                            items.put(keyStr, products);
-                            System.out.println("KeyStr:"+items);
+
+                            //Push to file
+                            FileWriter filez = new FileWriter(mypath);
+                            filez.write(items.toJSONString());
+                            filez.flush();
+                            filez.close();
                         }
-                    //}
 
-                    //Push to file
-                    //FileWriter filez = new FileWriter(mypath);
-                    //filez.write(items.toJSONString());
-                    //filez.flush();
-                    //filez.close();
-
+                    } else {
+                        System.out.println("Key does not exist");
+                    }
                 } else {
-
-                    //object with key mid doesn't exist
+                    System.out.println("ID does not exist");
                 }
-
 
 
             } catch (FileNotFoundException e) {
@@ -197,8 +196,6 @@ public class SaveData {
             //Path does not exist
         }
 
-
-        return updateReturnValue;
     }
 
 
@@ -232,7 +229,6 @@ public class SaveData {
 
                                 //return value
                                 if (keyStr2.equals(mkey)) {
-                                    //System.out.println("keyStr: " + keyStr2 + " keyValue: " + keyvalue2);
                                     exist = true;
                                 }
 
