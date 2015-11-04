@@ -39,7 +39,6 @@ public class SaveData {
         File mypath = new File(directory, "test.json");
 
         if(mypath.exists()){
-            System.out.println("Exist");
             JSONParser parser = new JSONParser();
             try {
 
@@ -108,7 +107,11 @@ public class SaveData {
 
     /*
         UpdateValue function iterates through the existing data and updates a value based on its key and id
+<<<<<<< HEAD
         -> IN PROGRESS
+=======
+        -> COMPLETED
+>>>>>>> 8c1a028ea47388f57ab00c3e647c55c6aaa34ef9
     */
     public void updateValue(String mid, String mkey, Object newvalue, Context context){
 

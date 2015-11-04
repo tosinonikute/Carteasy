@@ -39,6 +39,7 @@ public class Carteasy {
     public Object get(String id, String key, Context context){
         GetData gd = new GetData();
         return gd.getFile(id, key, context);
+<<<<<<< HEAD
     }
 
     //This function calls the update function in SaveData Class and updates user's input data
@@ -91,15 +92,15 @@ public class Carteasy {
     public Short getShort(String id, String key, Context context){
         Short value = 9446;
         return value;
+=======
+>>>>>>> 8c1a028ea47388f57ab00c3e647c55c6aaa34ef9
     }
 
-
-
-
-
-
-
-
+    //This function calls the update function in SaveData Class and updates user's input data
+    public void update(String mid, String mkey, Object newvalue, Context context){
+        SaveData sd = new SaveData();
+        sd.updateValue(mid, mkey, newvalue, context);
+    }
 
 
 
