@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *  Created by tech6 on 10/28/15.
@@ -100,8 +102,86 @@ public class GetData {
        This works best if the user specify for example:  user specifies id as 1243, and productname as key,
        It returns the respective Value of the key.
     */
-    public void view(String id, String key, JSONObject jsonObj, Context context) {
+    public Map ViewById(String mid, Context context){
 
+        Map<String, String> newitems = new HashMap<String, String>();
+
+        /* Create a new JSON object items to store values */
+        JSONObject items = new JSONObject();
+
+        ContextWrapper cw = new ContextWrapper(context);
+        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+
+        // Create imageDir in applications default directory
+        File mypath = new File(directory, "test.json");
+
+        if(mypath.exists()){
+
+            JSONParser parser = new JSONParser();
+            try {
+
+                Object obj = parser.parse(new FileReader(mypath));
+                JSONObject jsonObj = (JSONObject) obj;
+                SaveData sd = new SaveData();
+
+                /* Checks if both the ID exist, if not print an Error message */
+                if(sd.checkIfIdExist(mid, jsonObj)) {
+
+                    for (Object key : jsonObj.keySet()) {
+
+                        //based on you key types
+                        String keyStr = (String) key;
+                        Object keyvalue = jsonObj.get(keyStr);
+
+
+                        //for nested objects iteration if required
+                        if(keyvalue instanceof JSONObject) {
+
+                            if(keyStr.equals(mid)) {
+
+                                /* Loop the JSON object again for nested object */
+                                JSONObject newJsonObj = (JSONObject) keyvalue;
+                                for (Object key2 : newJsonObj.keySet()) {
+
+                                    //based on you key types
+                                    String keyStr2 = (String) key2;
+                                    Object keyvalue2 = newJsonObj.get(keyStr2);
+                                    String strvalue = (String)keyvalue2;
+
+                                    newitems.put(keyStr2, strvalue);
+
+                                    System.out.println("keyvalue: "+keyvalue);
+                                    return newitems;
+
+                                }
+                            }
+                        }
+
+
+
+
+                    }
+
+                } else {
+                    System.out.println("Key does not exist");
+                }
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+        } else {
+
+            //Path does not exist
+        }
+
+        return null;
     }
 
 

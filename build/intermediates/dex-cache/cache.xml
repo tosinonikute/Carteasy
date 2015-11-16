@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/tech6/irokotvapp/Shop/app/build/intermediates/exploded-aar/Shop/carteasy/unspecified/jars/classes.jar"
+        jar="/Users/tech6/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.6.0/a7537446a030da8eb0da4c71424d16c2589f6c4a/glide-3.6.0.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="28e8ec2e1d654f515deb006d5d0fcb50d84fd723">
-        <dex dex="/Users/tech6/irokotvapp/Shop/app/build/intermediates/pre-dexed/debug/classes-eb4258b10cd9221cf0b53af164b7c2f1f6ddbb07.jar" />
+        sha1="a7537446a030da8eb0da4c71424d16c2589f6c4a">
+        <dex dex="/Users/tech6/irokotvapp/Shop/app/build/intermediates/pre-dexed/debug/glide-3.6.0-3682913179fe78878736fce58f49a9fa2622c9fa.jar" />
     </item>
 
 </items>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/tech6/irokotvapp/Shop/carteasy/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-kk-rKZ/values-kk-rKZ.xml -->
+    <!-- From: file:/Users/tech6/irokotvapp/Carteasy/carteasy/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/values-kk-rKZ/values-kk-rKZ.xml -->
     <eat-comment/>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Негізгі бетте қозғалу"</string>
     <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
@@ -10,6 +10,8 @@
     <string msgid="4076576682505996667" name="abc_action_mode_done">"Дайын"</string>
     <string msgid="7468859129482906941" name="abc_activity_chooser_view_see_all">"Барлығын көру"</string>
     <string msgid="2031811694353399454" name="abc_activitychooserview_choose_application">"Қолданбаны таңдау"</string>
+    <string msgid="121134116657445385" name="abc_capital_off">"ӨШІРУЛІ"</string>
+    <string msgid="3405795526292276155" name="abc_capital_on">"ҚОСУЛЫ"</string>
     <string msgid="7723749260725869598" name="abc_search_hint">"Іздеу…"</string>
     <string msgid="3691816814315814921" name="abc_searchview_description_clear">"Сұрақты жою"</string>
     <string msgid="2550479030709304392" name="abc_searchview_description_query">"Сұрақты іздеу"</string>

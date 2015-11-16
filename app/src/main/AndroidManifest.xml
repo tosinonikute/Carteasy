@@ -16,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/title_activity_detail" >
+        </activity>
+        <activity
+            android:name=".ViewCart"
+            android:label="@string/title_activity_view_cart" >
+        </activity>
+
     </application>
 
 </manifest>
