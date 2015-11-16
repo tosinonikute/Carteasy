@@ -5,10 +5,3 @@
 .DS_Store
 /build
 /captures
-
-proguard/
-
-/.idea/workspace.xml
-.DS_Store
-/captures
-**/*.iml
