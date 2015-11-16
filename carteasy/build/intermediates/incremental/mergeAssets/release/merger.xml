@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/tech6/irokotvapp/Shop/carteasy/src/main/assets"/></dataSet><dataSet config="release"><source path="/Users/tech6/irokotvapp/Shop/carteasy/src/release/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/tech6/irokotvapp/Carteasy/carteasy/src/main/assets"/></dataSet><dataSet config="release"><source path="/Users/tech6/irokotvapp/Carteasy/carteasy/src/release/assets"/></dataSet></merger>

@@ -139,12 +139,9 @@ public class RemoveData {
 
                 Object obj = parser.parse(new FileReader(mypath));
                 JSONObject jsonObj = (JSONObject) obj;
-                System.out.println("hellokey");
-
-
                 SaveData sd = new SaveData();
 
-                    /* Checks if both the ID and Key exist, if not print an Error message */
+                /* Checks if both the ID and Key exist, if not print an Error message */
                 if(sd.checkIfIdExist(mid, jsonObj)) {
 
                         for (Object key : jsonObj.keySet()) {

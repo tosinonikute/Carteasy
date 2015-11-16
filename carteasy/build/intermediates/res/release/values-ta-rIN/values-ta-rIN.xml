@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/tech6/irokotvapp/Shop/carteasy/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ta-rIN/values-ta-rIN.xml -->
+    <!-- From: file:/Users/tech6/irokotvapp/Carteasy/carteasy/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/values-ta-rIN/values-ta-rIN.xml -->
     <eat-comment/>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"முகப்பிற்கு வழிசெலுத்து"</string>
     <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
@@ -10,6 +10,8 @@
     <string msgid="4076576682505996667" name="abc_action_mode_done">"முடிந்தது"</string>
     <string msgid="7468859129482906941" name="abc_activity_chooser_view_see_all">"எல்லாம் காட்டு"</string>
     <string msgid="2031811694353399454" name="abc_activitychooserview_choose_application">"பயன்பாட்டைத் தேர்வுசெய்க"</string>
+    <string msgid="121134116657445385" name="abc_capital_off">"முடக்கு"</string>
+    <string msgid="3405795526292276155" name="abc_capital_on">"இயக்கு"</string>
     <string msgid="7723749260725869598" name="abc_search_hint">"தேடு..."</string>
     <string msgid="3691816814315814921" name="abc_searchview_description_clear">"வினவலை அழி"</string>
     <string msgid="2550479030709304392" name="abc_searchview_description_query">"தேடல் வினவல்"</string>

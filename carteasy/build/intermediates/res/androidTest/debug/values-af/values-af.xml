@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/tech6/irokotvapp/Shop/carteasy/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-af/values-af.xml -->
+    <!-- From: file:/Users/tech6/irokotvapp/Carteasy/carteasy/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/values-af/values-af.xml -->
     <eat-comment/>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Navigeer tuis"</string>
     <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
@@ -10,6 +10,8 @@
     <string msgid="4076576682505996667" name="abc_action_mode_done">"Klaar"</string>
     <string msgid="7468859129482906941" name="abc_activity_chooser_view_see_all">"Sien alles"</string>
     <string msgid="2031811694353399454" name="abc_activitychooserview_choose_application">"Kies \'n program"</string>
+    <string msgid="121134116657445385" name="abc_capital_off">"AF"</string>
+    <string msgid="3405795526292276155" name="abc_capital_on">"AAN"</string>
     <string msgid="7723749260725869598" name="abc_search_hint">"Soek …"</string>
     <string msgid="3691816814315814921" name="abc_searchview_description_clear">"Vee navraag uit"</string>
     <string msgid="2550479030709304392" name="abc_searchview_description_query">"Soeknavraag"</string>

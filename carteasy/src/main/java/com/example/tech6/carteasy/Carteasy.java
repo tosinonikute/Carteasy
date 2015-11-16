@@ -4,6 +4,8 @@ import android.content.Context;
 
 import org.json.simple.JSONObject;
 
+import java.util.HashMap;
+
 
 /**
  * Created by tech6 on 10/19/15.
@@ -39,7 +41,6 @@ public class Carteasy {
     public Object get(String id, String key, Context context){
         GetData gd = new GetData();
         return gd.getFile(id, key, context);
-<<<<<<< HEAD
     }
 
     //This function calls the update function in SaveData Class and updates user's input data
@@ -61,58 +62,12 @@ public class Carteasy {
         rm.RemoveDataById(mid, context);
     }
 
-
-    /** This functions below will retrieve data and typecast it before returning it the user **/
-
-    public String getString(String id, String key, Context context){
-        String value = "";
-        return value;
-    }
-
-    public Integer getInteger(String id, String key, Context context){
-        Integer value = 0;
-        return value;
-    }
-
-    public Float getFloat(String id, String key, Context context){
-        float value = 0;
-        return value;
-    }
-
-    public Double getDouble(String id, String key, Context context){
-        Double value = 0.2;
-        return value;
-    }
-
-    public Long getLong(String id, String key, Context context){
-        Long value = 9484480494l;
-        return value;
-    }
-
-    public Short getShort(String id, String key, Context context){
-        Short value = 9446;
-        return value;
-=======
->>>>>>> 8c1a028ea47388f57ab00c3e647c55c6aaa34ef9
-    }
-
-    //This function calls the update function in SaveData Class and updates user's input data
-    public void update(String mid, String mkey, Object newvalue, Context context){
-        SaveData sd = new SaveData();
-        sd.updateValue(mid, mkey, newvalue, context);
-    }
-
-    //This function removes any key specified by the user
-    public void Removekey(String mid, String mkey, Context context){
-        RemoveData rm = new RemoveData();
-        rm.RemoveDataByKey(mid, mkey, context);
-    }
+    public void Viewdata(String mid, Context context){
+        GetData rm = new GetData();
+        Object itemObj = rm.ViewById(mid, context);
+        HashMap<String, String> newitems = new HashMap<String, String>();
 
 
-    //This function removes data based on any key specified by the user
-    public void Removeid(String mid, Context context){
-        RemoveData rm = new RemoveData();
-        rm.RemoveDataById(mid, context);
     }
 
 
@@ -147,6 +102,14 @@ public class Carteasy {
         Short value = 9446;
         return value;
     }
+
+
+
+
+
+
+
+
 
 
 
