@@ -23,8 +23,8 @@ import java.util.Map;
 public class GetData {
 
     private Boolean nested = false;
-    private Object returnvalue;
-    private Object printJsonvalue;
+    private Object returnValue;
+    private Object printJsonValue;
 
 
     /*
@@ -33,7 +33,7 @@ public class GetData {
      */
     public Object getFile(String mid, String mkey, Context context) {
 
-        returnvalue = "";
+        returnValue = "";
         ContextWrapper cw = new ContextWrapper(context);
         File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
 
@@ -45,7 +45,7 @@ public class GetData {
             Object obj = parser.parse(new FileReader(mypath));
             JSONObject jsonObj = (JSONObject) obj;
             //System.out.println("Keyvalue: "+jsonObj);
-            returnvalue = printJsonObject(mid, mkey, jsonObj);
+            returnValue = printJsonObject(mid, mkey, jsonObj);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class GetData {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return returnvalue;
+        return returnValue;
     }
 
 
@@ -64,7 +64,7 @@ public class GetData {
      */
     public Object printJsonObject(String mid, String mkey, JSONObject jsonObj) {
 
-        printJsonvalue = "";
+        printJsonValue = "";
         for (Object key : jsonObj.keySet()) {
             //based on you key types
             String keyStr = (String) key;
@@ -85,7 +85,7 @@ public class GetData {
                         //return value
                     if (keyStr.equals(mid)) {
                         if (keyStr2.equals(mkey)) {
-                            printJsonvalue = keyvalue2;
+                            printJsonValue = keyvalue2;
                             //System.out.println("Keyvalue2: "+keyvalue2);
                         }
                     }
@@ -93,7 +93,7 @@ public class GetData {
                 }
             }
         }
-       return printJsonvalue;
+       return printJsonValue;
     }
 
 
@@ -104,7 +104,7 @@ public class GetData {
     */
     public Map ViewById(String mid, Context context){
 
-        Map<String, String> newitems = new HashMap<String, String>();
+        Map<String, String> newItems = new HashMap<String, String>();
 
         /* Create a new JSON object items to store values */
         JSONObject items = new JSONObject();
@@ -131,34 +131,33 @@ public class GetData {
 
                         //based on you key types
                         String keyStr = (String) key;
-                        Object keyvalue = jsonObj.get(keyStr);
+                        Object keyValue = jsonObj.get(keyStr);
 
 
                         //for nested objects iteration if required
-                        if(keyvalue instanceof JSONObject) {
+                        if(keyValue instanceof JSONObject) {
 
                             if(keyStr.equals(mid)) {
 
                                 /* Loop the JSON object again for nested object */
-                                JSONObject newJsonObj = (JSONObject) keyvalue;
+                                JSONObject newJsonObj = (JSONObject) keyValue;
                                 for (Object key2 : newJsonObj.keySet()) {
 
                                     //based on you key types
                                     String keyStr2 = (String) key2;
                                     Object keyvalue2 = newJsonObj.get(keyStr2);
-                                    String strvalue = (String)keyvalue2;
 
-                                    newitems.put(keyStr2, strvalue);
+                                    //Cast the value to String
+                                    String strValue = String.valueOf(keyvalue2);
 
-                                    System.out.println("keyvalue: "+keyvalue);
-                                    return newitems;
+                                    newItems.put(keyStr2, strValue);
+
+                                    System.out.println("keyValue: " + keyValue);
 
                                 }
+                                return newItems;
                             }
                         }
-
-
-
 
                     }
 
@@ -190,9 +189,83 @@ public class GetData {
       ViewAll returns all values the values saved for example:
       id , productname, product_desc, isbn_no, qunatity e.t.c
     */
-    public void viewAll(Context context) {
+    public Map ViewAll(Context context){
 
+
+        Map<Integer, Map> mainItems = new HashMap<Integer, Map>();
+        int count = 0;
+
+        /* Create a new JSON object items to store values */
+        JSONObject items = new JSONObject();
+
+        ContextWrapper cw = new ContextWrapper(context);
+        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+
+        // Create imageDir in applications default directory
+        File mypath = new File(directory, "test.json");
+
+        if(mypath.exists()){
+
+            JSONParser parser = new JSONParser();
+            try {
+
+                Object obj = parser.parse(new FileReader(mypath));
+                JSONObject jsonObj = (JSONObject) obj;
+                SaveData sd = new SaveData();
+
+                    for (Object key : jsonObj.keySet()) {
+
+                        //based on you key types
+                        String keyStr = (String) key;
+                        Object keyvalue = jsonObj.get(keyStr);
+
+                        //for nested objects iteration if required
+                        if(keyvalue instanceof JSONObject) {
+
+                            Map<String, String> newItems = new HashMap<String, String>();
+
+                                /* Loop the JSON object again for nested object */
+                                JSONObject newJsonObj = (JSONObject) keyvalue;
+                                for (Object key2 : newJsonObj.keySet()) {
+
+                                    //based on you key types
+                                    String keyStr2 = (String) key2;
+                                    Object keyValue2 = newJsonObj.get(keyStr2);
+
+                                    //Cast the value to String
+                                    String strValue = String.valueOf(keyValue2);
+
+                                    newItems.put(keyStr2, strValue);
+
+                                    //System.out.println("keyvalue: " + keyValue);
+
+                                }
+
+                            mainItems.put(count, newItems);
+                            count++;
+                        }
+
+                    }
+                    return mainItems;
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+        } else {
+
+            //Path does not exist
+        }
+
+        return null;
     }
+
+
 
 
 }

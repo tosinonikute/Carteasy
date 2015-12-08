@@ -4,7 +4,7 @@ import android.content.Context;
 
 import org.json.simple.JSONObject;
 
-import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -16,12 +16,20 @@ public class Carteasy {
 
     private JSONObject items = new JSONObject();
     private JSONObject products = new JSONObject();
-    private String uniqueid;
+    private String uniqueId;
+    public static int applaunched = 0;
+
+
+    /* check when app is first run, to clear the JSON file */
+
+
+
+
 
 
     //This function Receive values as objects and ties them with an ID
     public void add(String id, String key, Object value){
-        uniqueid = id;
+        uniqueId = id;
 
         products.put(key, value);
         //Store in items
@@ -32,8 +40,9 @@ public class Carteasy {
 
     //This function calls the commit function in SaveData Class to save user's input to file.
    public void commit(Context context){
+       clearPreviousData(context);
        SaveData sd = new SaveData();
-       sd.save(context, items, uniqueid);
+       sd.save(context, items, uniqueId);
    }
 
 
@@ -57,17 +66,23 @@ public class Carteasy {
 
 
     //This function removes data based on any key specified by the user
-    public void Removeid(String mid, Context context){
+    public void RemoveId(String mid, Context context){
         RemoveData rm = new RemoveData();
         rm.RemoveDataById(mid, context);
     }
 
-    public void Viewdata(String mid, Context context){
-        GetData rm = new GetData();
-        Object itemObj = rm.ViewById(mid, context);
-        HashMap<String, String> newitems = new HashMap<String, String>();
+    public Map ViewData(String mid, Context context){
+        GetData gd = new GetData();
+        //Object itemObj = rm.ViewById(mid, context);
+        //HashMap<String, String> newitems = new HashMap<String, String>();
+        return gd.ViewById(mid, context);
+    }
 
-
+    public Map ViewAll(Context context){
+        GetData gd = new GetData();
+        //Object itemObj = rm.ViewById(mid, context);
+        //HashMap<String, String> newitems = new HashMap<String, String>();
+        return gd.ViewAll(context);
     }
 
 
@@ -75,42 +90,48 @@ public class Carteasy {
 
     public String getString(String id, String key, Context context){
         String value = "";
+        value = (String) get(id, key, context);
         return value;
     }
 
     public Integer getInteger(String id, String key, Context context){
         Integer value = 0;
+        value = (Integer) get(id, key, context);
         return value;
     }
 
     public Float getFloat(String id, String key, Context context){
         float value = 0;
+        value = (Float) get(id, key, context);
         return value;
     }
 
     public Double getDouble(String id, String key, Context context){
         Double value = 0.2;
+        value = (Double) get(id, key, context);
         return value;
     }
 
     public Long getLong(String id, String key, Context context){
         Long value = 9484480494l;
+        value = (Long) get(id, key, context);
         return value;
     }
 
     public Short getShort(String id, String key, Context context){
         Short value = 9446;
+        value = (Short) get(id, key, context);
         return value;
     }
 
-
-
-
-
-
-
-
-
+    public void clearPreviousData(Context context){
+        if(applaunched == 0){
+            RemoveData rm = new RemoveData();
+            rm.ClearAllData(context);
+            applaunched = 1;
+            System.out.println("IN APPLAUNCHED");
+        }
+    }
 
 
 }

@@ -148,21 +148,21 @@ public class RemoveData {
 
                             //based on you key types
                             String keyStr = (String) key;
-                            Object keyvalue = jsonObj.get(keyStr);
+                            Object keyValue = jsonObj.get(keyStr);
 
 
                             //for nested objects iteration if required
-                            if(keyvalue instanceof JSONObject) {
+                            if(keyValue instanceof JSONObject) {
 
                                 JSONObject products = new JSONObject();
 
                                 /* Loop the JSON object again for nested object */
-                                JSONObject newJsonObj = (JSONObject) keyvalue;
+                                JSONObject newJsonObj = (JSONObject) keyValue;
                                 for (Object key2 : newJsonObj.keySet()) {
 
                                     //based on you key types
                                     String keyStr2 = (String) key2;
-                                    Object keyvalue2 = newJsonObj.get(keyStr2);
+                                    Object keyValue2 = newJsonObj.get(keyStr2);
 
                                     //If this is true, It would not be added to the products JSONObject. So its removed
                                     if (keyStr.equals(mid)) {
@@ -170,7 +170,7 @@ public class RemoveData {
                                         removed = true; //If true, means ID and all pertaining data is removed
 
                                     } else {
-                                        products.put(keyStr2, keyvalue2);
+                                        products.put(keyStr2, keyValue2);
                                     }
                                 }
                                 items.put(keyStr, products);
@@ -210,8 +210,10 @@ public class RemoveData {
     }
 
 
-    /* Remove Data by Id */
-    public void ClearAllData(){
-
+    /* Remove Data all data in Json file */
+    public void ClearAllData(Context context){
+        ContextWrapper cw = new ContextWrapper(context);
+        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+        new File(directory, "test.json").delete();
     }
 }

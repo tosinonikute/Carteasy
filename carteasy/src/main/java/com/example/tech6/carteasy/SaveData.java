@@ -2,7 +2,6 @@ package com.example.tech6.carteasy;
 
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.os.Environment;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -50,11 +49,11 @@ public class SaveData {
 
                         //based on you key types
                         String keyStr = (String) key;
-                        Object keyvalue = jsonObj.get(keyStr);
+                        Object keyValue = jsonObj.get(keyStr);
 
-                        if (keyvalue instanceof JSONObject) {
+                        if (keyValue instanceof JSONObject) {
                             System.out.println("keyStr: " + keyStr);
-                            items.put(keyStr, keyvalue);
+                            items.put(keyStr, keyValue);
                         }
                     }
 
@@ -141,31 +140,31 @@ public class SaveData {
 
                             //based on you key types
                             String keyStr = (String) key;
-                            Object keyvalue = jsonObj.get(keyStr);
+                            Object keyValue = jsonObj.get(keyStr);
 
 
                             //for nested objects iteration if required
-                            if(keyvalue instanceof JSONObject) {
+                            if(keyValue instanceof JSONObject) {
 
                                 JSONObject products = new JSONObject();
 
                                 /* Loop the JSON object again for nested object */
-                                JSONObject newJsonObj = (JSONObject) keyvalue;
+                                JSONObject newJsonObj = (JSONObject) keyValue;
                                 for (Object key2 : newJsonObj.keySet()) {
 
                                     //based on you key types
                                     String keyStr2 = (String) key2;
-                                    Object keyvalue2 = newJsonObj.get(keyStr2);
+                                    Object keyValue2 = newJsonObj.get(keyStr2);
 
                                     if (keyStr.equals(mid)) {
                                         if (keyStr2.equals(mkey)) {
-                                            keyvalue2 = newvalue;
+                                            keyValue2 = newvalue;
 
                                             /* Notify the user that it has been updated */
                                             System.out.println(mid + "=>" + mkey + "=>" + newvalue + "=>updated");
                                         }
                                     }
-                                    products.put(keyStr2, keyvalue2);
+                                    products.put(keyStr2, keyValue2);
                                 }
                                 items.put(keyStr, products);
                             }
@@ -254,7 +253,7 @@ public class SaveData {
         for (Object key : jsonObj.keySet()) {
             //based on you key types
             String keyStr = (String) key;
-            Object keyvalue = jsonObj.get(keyStr);
+            Object keyValue = jsonObj.get(keyStr);
 
 
             if (keyStr.equals(mid)) {

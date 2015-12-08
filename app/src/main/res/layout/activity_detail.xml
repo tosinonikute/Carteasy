@@ -99,12 +99,23 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 >
-                <EditText
+                <!--<EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="SIZE"
                     android:id="@+id/button2"
-                    android:layout_gravity="left"/>
+                    android:layout_gravity="left"/>-->
+
+                <Spinner
+                    android:id="@+id/sizespinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:popupBackground="#ffffff"
+                    android:layout_gravity="left"
+                    >
+                </Spinner>
+
             </LinearLayout>
 
             <LinearLayout
@@ -112,12 +123,22 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 >
-                <EditText
+                <!--<EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="QUANTITY"
                     android:id="@+id/button4"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center" />-->
+                <Spinner
+                    android:id="@+id/qtyspinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:popupBackground="#ffffff"
+                    android:layout_gravity="right"
+                    >
+                </Spinner>
+
             </LinearLayout>
 
 
@@ -125,14 +146,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-
                 >
-                <EditText
+                <!--<EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="COLOUR"
                     android:id="@+id/button3"
-                    android:layout_gravity="right" />
+                    android:layout_gravity="right" />-->
+
+                <Spinner
+                    android:id="@+id/colorspinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:popupBackground="#ffffff"
+                    android:layout_gravity="right"
+                    >
+                </Spinner>
+
             </LinearLayout>
 
 
