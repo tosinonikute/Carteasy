@@ -116,13 +116,13 @@ public class DetailActivity extends ActionBarActivity  implements View.OnClickLi
         qtyspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-                quantitySelected = Integer.parseInt(SizeArray.get(position));
+                quantitySelected = QuantityArray.get(position);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
-                quantitySelected = Integer.parseInt(SizeArray.get(0));
+                quantitySelected = QuantityArray.get(0);
             }
         });
 
@@ -142,13 +142,13 @@ public class DetailActivity extends ActionBarActivity  implements View.OnClickLi
         colorspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-                colorSelected = SizeArray.get(position);
+                colorSelected = ColorArray.get(position);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
-                colorSelected = SizeArray.get(1);
+                colorSelected = ColorArray.get(1);
             }
         });
 

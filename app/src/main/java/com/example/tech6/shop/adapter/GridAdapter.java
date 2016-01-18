@@ -30,7 +30,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         species.setProductid("E101");
         species.setName("Fontana Milano");
         species.setDescription("Tum Lady Tote");
-        species.setPrice(1020);
+        species.setPrice(102);
         species.setThumbnail(R.drawable.product1);
         mItems.add(species);
 
@@ -38,7 +38,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         species.setProductid("E102");
         species.setName("Fendi");
         species.setDescription("Peekaboo Satchel");
-        species.setPrice(8720);
+        species.setPrice(872);
         species.setThumbnail(R.drawable.product2);
         mItems.add(species);
 
@@ -46,7 +46,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         species.setProductid("E103");
         species.setName("Stella Mccartney");
         species.setDescription("Becket Shoulder Bag");
-        species.setPrice(2120);
+        species.setPrice(212);
         species.setThumbnail(R.drawable.product3);
         mItems.add(species);
 
@@ -54,7 +54,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         species.setProductid("E104");
         species.setName("Truss");
         species.setDescription("Woven Medium Tote");
-        species.setPrice(9720);
+        species.setPrice(972);
         species.setThumbnail(R.drawable.product4);
         mItems.add(species);
 
@@ -62,7 +62,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         species.setProductid("E105");
         species.setName("FENDI");
         species.setDescription("Peekaboo Satchel");
-        species.setPrice(8900);
+        species.setPrice(890);
         species.setThumbnail(R.drawable.product5);
         mItems.add(species);
 
@@ -70,7 +70,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         species.setProductid("E106");
         species.setName("Givenchy");
         species.setDescription("Pandora Mini-Bag");
-        species.setPrice(4520);
+        species.setPrice(452);
         species.setThumbnail(R.drawable.product6);
         mItems.add(species);
 
@@ -78,7 +78,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         species.setProductid("E107");
         species.setName("Givenchy");
         species.setDescription("Antigona Duffel Bag");
-        species.setPrice(6720);
+        species.setPrice(672);
         species.setThumbnail(R.drawable.product7);
         mItems.add(species);
 
@@ -86,7 +86,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         species.setProductid("E108");
         species.setName("FENDI");
         species.setDescription("Peekaboo Shearling");
-        species.setPrice(1320);
+        species.setPrice(132);
         species.setThumbnail(R.drawable.product8);
         mItems.add(species);
 
@@ -94,7 +94,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         species.setProductid("E109");
         species.setName("LANVIN");
         species.setDescription("Lanvin Clutch");
-        species.setPrice(7720);
+        species.setPrice(772);
         species.setThumbnail(R.drawable.product9);
         mItems.add(species);
 
@@ -110,7 +110,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         species.setProductid("E111");
         species.setName("GIVENCHY");
         species.setDescription("Pandora Medium");
-        species.setPrice(2720);
+        species.setPrice(272);
         species.setThumbnail(R.drawable.product11);
         mItems.add(species);
 
@@ -118,7 +118,7 @@ public class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         species.setProductid("E112");
         species.setName("OPENING CEREMONY");
         species.setDescription("Misha Long Wallet");
-        species.setPrice(1720);
+        species.setPrice(172);
         species.setThumbnail(R.drawable.product12);
         mItems.add(species);
     }

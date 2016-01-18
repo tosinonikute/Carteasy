@@ -2,107 +2,89 @@ package com.example.tech6.shop.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.example.tech6.shop.R;
-import com.example.tech6.shop.model.Items;
+import com.example.tech6.shop.model.Cart;
 
 import java.util.ArrayList;
 
 /**
- * Created by Hp on 27/09/2015.
+ * Created by Edwin on 28/02/2015.
  */
+public class ViewCartAdapter  extends RecyclerView.Adapter<ViewCartAdapter.ViewHolder> {
 
-public class ViewCartAdapter
-        extends RecyclerView.Adapter<ViewCartAdapter.ViewHolder> {
-
-    private final TypedValue mTypedValue = new TypedValue();
-    private int mBackground;
-    private ArrayList<Items> mValues;
-    public String tabId;
+    ArrayList<Cart> mItems;
     Context mContext;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public String mBoundString;
-
-        public final View mView;
-        public final ImageView mProductthumbnail;
-        public final TextView mProductname, mProductdesc, mProductprice, mOtherdetails;
-        //public final TextView mTextmoviecategory;
-
-        public ViewHolder(View view) {
-            super(view);
-            mView = view;
-            mProductname = (TextView) view.findViewById(R.id.productname);
-            mProductdesc = (TextView) view.findViewById(R.id.productdesc);
-            mProductprice = (TextView) view.findViewById(R.id.productprice);
-            mProductthumbnail =  (ImageView) view.findViewById(R.id.productimage);
-            mOtherdetails = (TextView) view.findViewById(R.id.otherdetails);
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mProductname.getText();
-        }
-    }
-
-    public String getValueAt(int position) {
-        return mValues.get(position).getProductid();
-    }
-
-    public ViewCartAdapter(Context context, ArrayList<Items> items) {
-        //context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
+    public ViewCartAdapter(Context context, ArrayList<Cart> item ) {
         mContext = context;
-        mBackground = mTypedValue.resourceId;
-        mValues = items;
+        mItems = item;
+
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cart_list, parent, false);
-        view.setBackgroundResource(mBackground);
-        return new ViewHolder(view);
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.cart_list, viewGroup, false);
+        ViewHolder viewHolder = new ViewHolder(v);
+        return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
-        /* Set your values */
+    public void onBindViewHolder(ViewHolder viewHolder, final int i) {
 
-        holder.mProductname.setText(mValues.get(position).getName());
-        holder.mProductdesc.setText(mValues.get(position).getDescription());
-        holder.mProductprice.setText(mValues.get(position).getPrice());
+        Cart ct = mItems.get(i);
+        System.out.println("Found position:" + i);
+
+        viewHolder.mProductname.setText(ct.getName());
+        viewHolder.mProductdesc.setText(ct.getDescription());
+        viewHolder.mProductprice.setText("$" + Integer.toString(ct.getPrice()));
+        viewHolder.mProductthumbnail.setImageResource(ct.getThumbnail());
+        viewHolder.mOtherdetails.setText("Size: "+ct.getSize()+"  Qty: "+Integer.toString(ct.getQuantity())+"  Color: "+ct.getColor());
+
+        Glide.with(mContext)
+                .load(ct.getThumbnail())
+                .into(viewHolder.mProductthumbnail);
 
 
-
-        Log.d("Found Position: ", Integer.toString(position));
-
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        /*viewHolder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String[] itemArray = new String[mValues.size()];
-
 
             }
-        });
-
-
-            Glide.with(mContext)
-                    .load(R.drawable.product1)
-                    .into(holder.mProductthumbnail);
-
+        });*/
 
 
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+
+        return mItems.size();
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder{
+
+        public final ImageView mProductthumbnail;
+        public final TextView mProductname, mProductdesc, mProductprice, mOtherdetails;
+        public final View mView;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            mView = itemView;
+            mProductname = (TextView) itemView.findViewById(R.id.productname);
+            mProductdesc = (TextView) itemView.findViewById(R.id.productdesc);
+            mProductprice = (TextView) itemView.findViewById(R.id.productprice);
+            mProductthumbnail =  (ImageView) itemView.findViewById(R.id.productimage);
+            mOtherdetails = (TextView) itemView.findViewById(R.id.otherdetails);
+
+
+        }
     }
 }
