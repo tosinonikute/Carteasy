@@ -61,9 +61,6 @@ public class ViewCartActivity extends ActionBarActivity {
 
             //Retrieve the values of the Map by starting from index 0 - zero
 
-            //System.out.println(entry.getKey() + "=" + entry.getValue());
-            System.out.println(entry.getKey() + "=");
-
             cartitem = new Cart();
             //Get the sub values of the Map
             Map<String, String> innerdata = entry.getValue();

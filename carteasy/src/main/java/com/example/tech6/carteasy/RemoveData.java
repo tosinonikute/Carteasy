@@ -2,6 +2,7 @@ package com.example.tech6.carteasy;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.util.Log;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -19,103 +20,102 @@ import java.io.IOException;
 public class RemoveData {
 
 
-        public void RemoveDataByKey(String mid, String mkey, Context context){
+    public void RemoveDataByKey(String mid, String mkey, Context context){
 
-            Boolean mkeyFound = false;
+        Boolean mkeyFound = false;
 
           /* Create a new JSON object items to store values */
-            JSONObject items = new JSONObject();
+        JSONObject items = new JSONObject();
 
-            ContextWrapper cw = new ContextWrapper(context);
-            File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+        ContextWrapper cw = new ContextWrapper(context);
+        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
 
-            // Create imageDir in applications default directory
-            File mypath = new File(directory, "test.json");
+        // Create imageDir in applications default directory
+        File mypath = new File(directory, "test.json");
 
-            if(mypath.exists()){
+        if(mypath.exists()){
 
-                JSONParser parser = new JSONParser();
-                try {
+            JSONParser parser = new JSONParser();
+            try {
 
-                    Object obj = parser.parse(new FileReader(mypath));
-                    JSONObject jsonObj = (JSONObject) obj;
-                    System.out.println("hellokey");
-
-
-                    SaveData sd = new SaveData();
-
-                    /* Checks if both the ID and Key exist, if not print an Error message */
-                    if(sd.checkIfIdExist(mid, jsonObj)) {
-                        if (sd.checkIfKeyExist(mid, mkey, jsonObj)) {
-
-                            for (Object key : jsonObj.keySet()) {
-
-                                //based on you key types
-                                String keyStr = (String) key;
-                                Object keyvalue = jsonObj.get(keyStr);
+                Object obj = parser.parse(new FileReader(mypath));
+                JSONObject jsonObj = (JSONObject) obj;
 
 
-                                //for nested objects iteration if required
-                                if(keyvalue instanceof JSONObject) {
+                SaveData sd = new SaveData();
 
-                                    JSONObject products = new JSONObject();
+                /* Checks if both the ID and Key exist, if not print an Error message */
+                if(sd.checkIfIdExist(mid, jsonObj)) {
+                    if (sd.checkIfKeyExist(mid, mkey, jsonObj)) {
+
+                        for (Object key : jsonObj.keySet()) {
+
+                            //based on you key types
+                            String keyStr = (String) key;
+                            Object keyvalue = jsonObj.get(keyStr);
+
+
+                            //for nested objects iteration if required
+                            if(keyvalue instanceof JSONObject) {
+
+                                JSONObject products = new JSONObject();
 
                                 /* Loop the JSON object again for nested object */
-                                    JSONObject newJsonObj = (JSONObject) keyvalue;
-                                    for (Object key2 : newJsonObj.keySet()) {
+                                JSONObject newJsonObj = (JSONObject) keyvalue;
+                                for (Object key2 : newJsonObj.keySet()) {
 
-                                        //based on you key types
-                                        String keyStr2 = (String) key2;
-                                        Object keyvalue2 = newJsonObj.get(keyStr2);
+                                    //based on you key types
+                                    String keyStr2 = (String) key2;
+                                    Object keyvalue2 = newJsonObj.get(keyStr2);
 
-                                        if (keyStr.equals(mid)){ //product id
-                                            if (keyStr2.equals(mkey)){ // product name
-                                                mkeyFound = true;
+                                    if (keyStr.equals(mid)){ //product id
+                                        if (keyStr2.equals(mkey)){ // product name
+                                            mkeyFound = true;
 
-                                                /* Notify the user that it has been updated */
-                                                System.out.println(mid + "=>" + mkey + "=>" + "removed");
-                                            }
-                                        }
-
-                                        if(!mkeyFound.equals(true)) {
-                                            products.put(keyStr2, keyvalue2);
-                                        } else {
-                                            mkeyFound = false;
+                                            /* Notify the user that it has been updated */
+                                            Log.d("Carteasy: ", mid + "=>" + mkey + "=>" + "removed");
                                         }
                                     }
-                                    items.put(keyStr, products);
-                                }
 
-                                //Push to file
-                                FileWriter filez = new FileWriter(mypath);
-                                filez.write(items.toJSONString());
-                                filez.flush();
-                                filez.close();
+                                    if(!mkeyFound.equals(true)) {
+                                        products.put(keyStr2, keyvalue2);
+                                    } else {
+                                        mkeyFound = false;
+                                    }
+                                }
+                                items.put(keyStr, products);
                             }
 
-                        } else {
-                            System.out.println("Key does not exist");
+                            //Push to file
+                            FileWriter filez = new FileWriter(mypath);
+                            filez.write(items.toJSONString());
+                            filez.flush();
+                            filez.close();
                         }
+
                     } else {
-                        System.out.println("ID does not exist");
+                        Log.d("Carteasy: ", "Key does not exist");
                     }
-
-
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                } else {
+                    Log.d("Carteasy: ", "ID does not exist");
                 }
 
 
-            } else {
-
-                //Path does not exist
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
 
+
+        } else {
+
+            //Path does not exist
         }
+
+    }
 
 
 
@@ -144,48 +144,48 @@ public class RemoveData {
                 /* Checks if both the ID and Key exist, if not print an Error message */
                 if(sd.checkIfIdExist(mid, jsonObj)) {
 
-                        for (Object key : jsonObj.keySet()) {
+                    for (Object key : jsonObj.keySet()) {
 
-                            //based on you key types
-                            String keyStr = (String) key;
-                            Object keyValue = jsonObj.get(keyStr);
+                        //based on you key types
+                        String keyStr = (String) key;
+                        Object keyValue = jsonObj.get(keyStr);
 
 
-                            //for nested objects iteration if required
-                            if(keyValue instanceof JSONObject) {
+                        //for nested objects iteration if required
+                        if(keyValue instanceof JSONObject) {
 
-                                JSONObject products = new JSONObject();
+                            JSONObject products = new JSONObject();
 
                                 /* Loop the JSON object again for nested object */
-                                JSONObject newJsonObj = (JSONObject) keyValue;
-                                for (Object key2 : newJsonObj.keySet()) {
+                            JSONObject newJsonObj = (JSONObject) keyValue;
+                            for (Object key2 : newJsonObj.keySet()) {
 
-                                    //based on you key types
-                                    String keyStr2 = (String) key2;
-                                    Object keyValue2 = newJsonObj.get(keyStr2);
+                                //based on you key types
+                                String keyStr2 = (String) key2;
+                                Object keyValue2 = newJsonObj.get(keyStr2);
 
-                                    //If this is true, It would not be added to the products JSONObject. So its removed
-                                    if (keyStr.equals(mid)) {
+                                //If this is true, It would not be added to the products JSONObject. So its removed
+                                if (keyStr.equals(mid)) {
 
-                                        removed = true; //If true, means ID and all pertaining data is removed
+                                    removed = true; //If true, means ID and all pertaining data is removed
 
-                                    } else {
-                                        products.put(keyStr2, keyValue2);
-                                    }
+                                } else {
+                                    products.put(keyStr2, keyValue2);
                                 }
-                                items.put(keyStr, products);
                             }
-
-                            //Push to file
-                            FileWriter filez = new FileWriter(mypath);
-                            filez.write(items.toJSONString());
-                            filez.flush();
-                            filez.close();
+                            items.put(keyStr, products);
                         }
 
-                    } else {
-                        System.out.println("Key does not exist");
+                        //Push to file
+                        FileWriter filez = new FileWriter(mypath);
+                        filez.write(items.toJSONString());
+                        filez.flush();
+                        filez.close();
                     }
+
+                } else {
+                    Log.d("Carteasy: ", "Key does not exist");
+                }
 
 
             } catch (FileNotFoundException e) {
@@ -204,7 +204,7 @@ public class RemoveData {
 
          /* Notify the user that it has been updated */
         if(removed.equals(true)) {
-            System.out.println(mid + "=>" + "=>removed");
+            Log.d("Carteasy: ", mid + "=>" + "=>removed");
         }
 
     }

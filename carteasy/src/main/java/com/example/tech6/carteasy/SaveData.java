@@ -2,6 +2,7 @@ package com.example.tech6.carteasy;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.util.Log;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -65,7 +66,7 @@ public class SaveData {
                     filez.flush();
                     filez.close();
 
-                    System.out.println("=>data_saved");
+                    Log.d("Carteasy: ", "=>data_saved");
 
                 } else {
 
@@ -106,11 +107,6 @@ public class SaveData {
 
     /*
         UpdateValue function iterates through the existing data and updates a value based on its key and id
-<<<<<<< HEAD
-        -> IN PROGRESS
-=======
-        -> COMPLETED
->>>>>>> 8c1a028ea47388f57ab00c3e647c55c6aaa34ef9
     */
     public void updateValue(String mid, String mkey, Object newvalue, Context context){
 
@@ -161,7 +157,8 @@ public class SaveData {
                                             keyValue2 = newvalue;
 
                                             /* Notify the user that it has been updated */
-                                            System.out.println(mid + "=>" + mkey + "=>" + newvalue + "=>updated");
+                                            Log.d("Carteasy: ", mid + "=>" + mkey + "=>" + newvalue + "=>updated");
+
                                         }
                                     }
                                     products.put(keyStr2, keyValue2);
@@ -177,10 +174,10 @@ public class SaveData {
                         }
 
                     } else {
-                        System.out.println("Key does not exist");
+                        Log.d("Carteasy: ", "Key does not exist");
                     }
                 } else {
-                    System.out.println("ID does not exist");
+                    Log.d("Carteasy: ", "ID does not exist");
                 }
 
 
@@ -202,43 +199,43 @@ public class SaveData {
 
 
 
-     /*
-        checkIfKeyExist function checks if a key exist already, so as not add multiple keys in same ID
-        For example: adding productname twice for id => 1234
-     */
+    /*
+       checkIfKeyExist function checks if a key exist already, so as not add multiple keys in same ID
+       For example: adding productname twice for id => 1234
+    */
     public Boolean checkIfKeyExist(String mid, String mkey, JSONObject jsonObj) {
 
         Boolean exist = false;
         Boolean found = false;
 
-                for (Object key : jsonObj.keySet()) {
-                    //based on you key types
-                    String keyStr = (String) key;
-                    Object keyvalue = jsonObj.get(keyStr);
+        for (Object key : jsonObj.keySet()) {
+            //based on you key types
+            String keyStr = (String) key;
+            Object keyvalue = jsonObj.get(keyStr);
 
 
-                    if (keyStr.equals(mid)) {
-                        found = true;
-                    }
+            if (keyStr.equals(mid)) {
+                found = true;
+            }
 
-                    if (keyvalue instanceof JSONObject) {
-                        if(found.equals(true)) {
-                            JSONObject newJsonObj = (JSONObject) keyvalue;
-                            for (Object key2 : newJsonObj.keySet()) {
-                                //based on you key types
-                                String keyStr2 = (String) key2;
-                                Object keyvalue2 = newJsonObj.get(keyStr2);
+            if (keyvalue instanceof JSONObject) {
+                if(found.equals(true)) {
+                    JSONObject newJsonObj = (JSONObject) keyvalue;
+                    for (Object key2 : newJsonObj.keySet()) {
+                        //based on you key types
+                        String keyStr2 = (String) key2;
+                        Object keyvalue2 = newJsonObj.get(keyStr2);
 
-                                //return value
-                                if (keyStr2.equals(mkey)) {
-                                    exist = true;
-                                }
-
-                            }
-                            found = false;
+                        //return value
+                        if (keyStr2.equals(mkey)) {
+                            exist = true;
                         }
+
                     }
+                    found = false;
                 }
+            }
+        }
         return exist;
     }
 

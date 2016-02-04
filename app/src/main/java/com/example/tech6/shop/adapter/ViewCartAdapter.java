@@ -46,19 +46,11 @@ public class ViewCartAdapter  extends RecyclerView.Adapter<ViewCartAdapter.ViewH
         viewHolder.mProductdesc.setText(ct.getDescription());
         viewHolder.mProductprice.setText("$" + Integer.toString(ct.getPrice()));
         viewHolder.mProductthumbnail.setImageResource(ct.getThumbnail());
-        viewHolder.mOtherdetails.setText("Size: "+ct.getSize()+"  Qty: "+Integer.toString(ct.getQuantity())+"  Color: "+ct.getColor());
+        viewHolder.mOtherdetails.setText("Size: " + ct.getSize() + "  Qty: " + Integer.toString(ct.getQuantity()) + "  Color: " + ct.getColor());
 
         Glide.with(mContext)
                 .load(ct.getThumbnail())
                 .into(viewHolder.mProductthumbnail);
-
-
-        /*viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
 
 
     }

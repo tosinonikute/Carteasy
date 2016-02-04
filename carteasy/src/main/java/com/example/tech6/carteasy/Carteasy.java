@@ -17,12 +17,9 @@ public class Carteasy {
     private JSONObject items = new JSONObject();
     private JSONObject products = new JSONObject();
     private String uniqueId;
-    public static int applaunched = 0;
 
-
-    /* check when app is first run, to clear the JSON file */
-
-
+    /* check when user's app starts for the first time, it prompts carteasy to clear existing contents of the JSON file */
+    public static boolean applaunched = false;
 
 
 
@@ -39,11 +36,11 @@ public class Carteasy {
 
 
     //This function calls the commit function in SaveData Class to save user's input to file.
-   public void commit(Context context){
-       clearPreviousData(context);
-       SaveData sd = new SaveData();
-       sd.save(context, items, uniqueId);
-   }
+    public void commit(Context context){
+        clearPreviousData(context);
+        SaveData sd = new SaveData();
+        sd.save(context, items, uniqueId);
+    }
 
 
     //This function retreives objects value by given id and key and displays it
@@ -73,15 +70,11 @@ public class Carteasy {
 
     public Map ViewData(String mid, Context context){
         GetData gd = new GetData();
-        //Object itemObj = rm.ViewById(mid, context);
-        //HashMap<String, String> newitems = new HashMap<String, String>();
         return gd.ViewById(mid, context);
     }
 
     public Map ViewAll(Context context){
         GetData gd = new GetData();
-        //Object itemObj = rm.ViewById(mid, context);
-        //HashMap<String, String> newitems = new HashMap<String, String>();
         return gd.ViewAll(context);
     }
 
@@ -125,14 +118,12 @@ public class Carteasy {
     }
 
     public void clearPreviousData(Context context){
-        if(applaunched == 0){
+        if(applaunched == false){
             RemoveData rm = new RemoveData();
             rm.ClearAllData(context);
-            applaunched = 1;
-            System.out.println("IN APPLAUNCHED");
+            applaunched = true;
         }
     }
 
 
 }
-

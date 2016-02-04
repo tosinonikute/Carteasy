@@ -2,6 +2,7 @@ package com.example.tech6.carteasy;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.util.Log;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -70,8 +71,6 @@ public class GetData {
             String keyStr = (String) key;
             Object keyvalue = jsonObj.get(keyStr);
 
-            //System.out.println("key: "+ keyStr + " value: " + keyvalue);
-
             //Loops for the second time for nested objects iteration if required
             if (keyvalue instanceof JSONObject) {
                 //printJsonObject(mid, mkey, (JSONObject) keyvalue);
@@ -82,18 +81,17 @@ public class GetData {
                     String keyStr2 = (String) key2;
                     Object keyvalue2 = newJsonObj.get(keyStr2);
 
-                        //return value
+                    //return value
                     if (keyStr.equals(mid)) {
                         if (keyStr2.equals(mkey)) {
                             printJsonValue = keyvalue2;
-                            //System.out.println("Keyvalue2: "+keyvalue2);
                         }
                     }
 
                 }
             }
         }
-       return printJsonValue;
+        return printJsonValue;
     }
 
 
@@ -152,8 +150,6 @@ public class GetData {
 
                                     newItems.put(keyStr2, strValue);
 
-                                    System.out.println("keyValue: " + keyValue);
-
                                 }
                                 return newItems;
                             }
@@ -162,7 +158,7 @@ public class GetData {
                     }
 
                 } else {
-                    System.out.println("Key does not exist");
+                    Log.d("Carteasy: ","Key does not exist");
                 }
 
 
@@ -213,40 +209,38 @@ public class GetData {
                 JSONObject jsonObj = (JSONObject) obj;
                 SaveData sd = new SaveData();
 
-                    for (Object key : jsonObj.keySet()) {
+                for (Object key : jsonObj.keySet()) {
 
-                        //based on you key types
-                        String keyStr = (String) key;
-                        Object keyvalue = jsonObj.get(keyStr);
+                    //based on you key types
+                    String keyStr = (String) key;
+                    Object keyvalue = jsonObj.get(keyStr);
 
-                        //for nested objects iteration if required
-                        if(keyvalue instanceof JSONObject) {
+                    //for nested objects iteration if required
+                    if(keyvalue instanceof JSONObject) {
 
-                            Map<String, String> newItems = new HashMap<String, String>();
+                        Map<String, String> newItems = new HashMap<String, String>();
 
                                 /* Loop the JSON object again for nested object */
-                                JSONObject newJsonObj = (JSONObject) keyvalue;
-                                for (Object key2 : newJsonObj.keySet()) {
+                        JSONObject newJsonObj = (JSONObject) keyvalue;
+                        for (Object key2 : newJsonObj.keySet()) {
 
-                                    //based on you key types
-                                    String keyStr2 = (String) key2;
-                                    Object keyValue2 = newJsonObj.get(keyStr2);
+                            //based on you key types
+                            String keyStr2 = (String) key2;
+                            Object keyValue2 = newJsonObj.get(keyStr2);
 
-                                    //Cast the value to String
-                                    String strValue = String.valueOf(keyValue2);
+                            //Cast the value to String
+                            String strValue = String.valueOf(keyValue2);
 
-                                    newItems.put(keyStr2, strValue);
+                            newItems.put(keyStr2, strValue);
 
-                                    //System.out.println("keyvalue: " + keyValue);
-
-                                }
-
-                            mainItems.put(count, newItems);
-                            count++;
                         }
 
+                        mainItems.put(count, newItems);
+                        count++;
                     }
-                    return mainItems;
+
+                }
+                return mainItems;
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
