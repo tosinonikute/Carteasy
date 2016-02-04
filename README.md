@@ -147,8 +147,8 @@ You should then checkout the library and investigate the sample code, which cove
      //Get the items tied to the Id
      Map<String, String> innerdata = entry.getValue();
      for (Map.Entry<String, String> innerentry : innerdata.entrySet()) {
-         Log.d("Key: ",innerentry.getKey());
-         Log.d("Value: ",innerentry.getValue());
+         Log.d("Inner Key: ",innerentry.getKey());
+         Log.d("Inner Value: ",innerentry.getValue());
      }
   }
   ```
@@ -168,8 +168,8 @@ You should then checkout the library and investigate the sample code, which cove
      //Get the items tied to the Id
      Map<String, String> innerdata = entry.getValue();
      for (Map.Entry<String, String> innerentry : innerdata.entrySet()) {
-         Log.d("Key: ",innerentry.getKey());
-         Log.d("Value: ",innerentry.getValue());
+         Log.d("Inner Key: ",innerentry.getKey());
+         Log.d("Inner Value: ",innerentry.getValue());
      }
   }
   ```
@@ -186,4 +186,3 @@ Nothing here for now.
 *Credits*
 
 This library depends on json-simple-1.1.1
-
