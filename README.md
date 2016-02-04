@@ -75,37 +75,37 @@ You should then checkout the library and investigate the sample code, which cove
  *String*
 
  ```
- cs.getString(String id, String key, Context context);
+ String value = cs.getString(String id, String key, Context context);
  ```
 
  *Integer*
 
  ```
- cs.getInteger(String id, String key, Context context);
+ int value = cs.getInteger(String id, String key, Context context);
  ```
 
  *Float*
 
  ```
- cs.getFloat(String id, String key, Context context);
+ Float value = cs.getFloat(String id, String key, Context context);
  ```
 
  *Double*
 
  ```
- cs.getDouble(String id, String key, Context context);
+ Double value = cs.getDouble(String id, String key, Context context);
  ```
 
  *Long*
 
  ```
- cs.getLong(String id, String key, Context context);
+ Long value = cs.getLong(String id, String key, Context context);
  ```
 
  *Short*
 
  ```
- cs.getShort(String id, String key, Context context);
+ Short value = cs.getShort(String id, String key, Context context);
  ```
 
 
@@ -131,6 +131,49 @@ You should then checkout the library and investigate the sample code, which cove
  Carteasy cs = new Carteasy();
  cs.RemoveId(String id, Context context);
  ```
+
+ *Viewing all items stored in cart*
+
+ ```
+  Map<Integer, Map> data;
+  Carteasy cs = new Carteasy();
+  data = cs.ViewAll(Context context);
+
+  for (Map.Entry<Integer, Map> entry : data.entrySet()) {
+     //get the Id
+     Log.d("Key: ",entry.getKey());
+     Log.d("Value: ",entry.getValue());
+
+     //Get the items tied to the Id
+     Map<String, String> innerdata = entry.getValue();
+     for (Map.Entry<String, String> innerentry : innerdata.entrySet()) {
+         Log.d("Key: ",innerentry.getKey());
+         Log.d("Value: ",innerentry.getValue());
+     }
+  }
+  ```
+
+ *Viewing all items stored which is tied to an ID*
+
+  ```
+  Map<Integer, Map> data;
+  Carteasy cs = new Carteasy();
+  data = cs.ViewData(String id, Context context);
+
+  for (Map.Entry<Integer, Map> entry : data.entrySet()) {
+     //get the Id
+     Log.d("Key: ",entry.getKey());
+     Log.d("Value: ",entry.getValue());
+
+     //Get the items tied to the Id
+     Map<String, String> innerdata = entry.getValue();
+     for (Map.Entry<String, String> innerentry : innerdata.entrySet()) {
+         Log.d("Key: ",innerentry.getKey());
+         Log.d("Value: ",innerentry.getValue());
+     }
+  }
+  ```
+
 
 
 
