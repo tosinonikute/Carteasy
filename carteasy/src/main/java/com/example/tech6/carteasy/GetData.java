@@ -45,7 +45,6 @@ public class GetData {
 
             Object obj = parser.parse(new FileReader(mypath));
             JSONObject jsonObj = (JSONObject) obj;
-            //System.out.println("Keyvalue: "+jsonObj);
             returnValue = printJsonObject(mid, mkey, jsonObj);
 
         } catch (FileNotFoundException e) {

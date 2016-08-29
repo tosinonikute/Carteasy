@@ -121,7 +121,6 @@ public class SaveData {
 
                 Object obj = parser.parse(new FileReader(mypath));
                 JSONObject jsonObj = (JSONObject) obj;
-                System.out.println("hellokey");
 
                 /* Checks if both the ID and Key exist, if not print an Error message */
                 if(checkIfIdExist(mid, jsonObj)) {

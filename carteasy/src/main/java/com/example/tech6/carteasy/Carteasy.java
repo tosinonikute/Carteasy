@@ -41,7 +41,6 @@ public class Carteasy {
     public void commit(Context context){
         clearPreviousData(context);
         SaveData sd = new SaveData();
-        //System.out.println("helloworld " + items);
         sd.save(context, items, uniqueId, products);
     }
 
