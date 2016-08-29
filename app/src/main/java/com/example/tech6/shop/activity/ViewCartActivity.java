@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tech6.carteasy.Carteasy;
@@ -30,6 +31,7 @@ public class ViewCartActivity extends ActionBarActivity {
     private RecyclerView.Adapter mAdapter;
     private TextView NoOfItems;
     private Button continuebutton;
+    private ImageView optionButton;
 
     private int id;
 
@@ -69,6 +71,8 @@ public class ViewCartActivity extends ActionBarActivity {
 
                 String product = entry2.getKey();
                 switch (product) {
+                    case "product id":  cartitem.setProductid(entry2.getValue());
+                        break;
                     case "product name":  cartitem.setName(entry2.getValue());
                         break;
                     case "product desc":  cartitem.setDescription(entry2.getValue());
@@ -119,6 +123,8 @@ public class ViewCartActivity extends ActionBarActivity {
                 finish(); // call this to finish the current activity
             }
         });
+
+
 
 
     }

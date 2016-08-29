@@ -36,10 +36,10 @@ public class GetData {
 
         returnValue = "";
         ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
 
         // Create imageDir in applications default directory
-        File mypath = new File(directory, "test.json");
+        File mypath = new File(directory, Carteasy.carteasyFileName);
         JSONParser parser = new JSONParser();
         try {
 
@@ -108,10 +108,10 @@ public class GetData {
         JSONObject items = new JSONObject();
 
         ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
 
         // Create imageDir in applications default directory
-        File mypath = new File(directory, "test.json");
+        File mypath = new File(directory, Carteasy.carteasyFileName);
 
         if(mypath.exists()){
 
@@ -195,10 +195,10 @@ public class GetData {
         JSONObject items = new JSONObject();
 
         ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
 
         // Create imageDir in applications default directory
-        File mypath = new File(directory, "test.json");
+        File mypath = new File(directory, Carteasy.carteasyFileName);
 
         if(mypath.exists()){
 

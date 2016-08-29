@@ -1,5 +1,7 @@
 package com.example.tech6.shop.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -7,9 +9,17 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.example.tech6.carteasy.Carteasy;
 import com.example.tech6.shop.R;
 import com.example.tech6.shop.adapter.GridAdapter;
+import com.example.tech6.shop.model.Cart;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -17,6 +27,7 @@ public class MainActivity extends ActionBarActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     private Toolbar toolbar;
+    private ArrayList<Cart> mItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +36,11 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-        // Set a Toolbar to replace the ActionBar.
+        //Set a Toolbar to replace the ActionBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+
 
         // Calling the RecyclerView
         mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
@@ -40,6 +52,39 @@ public class MainActivity extends ActionBarActivity {
 
         mAdapter = new GridAdapter();
         mRecyclerView.setAdapter(mAdapter);
+
+
+
+        //Retrieve the cart details - begin
+        Map<Integer, Map> data;
+        Carteasy cs = new Carteasy();
+        data = cs.ViewAll(getApplicationContext());
+        mItems = new ArrayList<Cart>();
+        Cart cartitem = new Cart();
+
+        //check if retrieved any size greater than 0 & not null
+        if(data != null && data.size() > 0) {
+            for (Map.Entry<Integer, Map> entry : data.entrySet()) {
+                mItems.add(cartitem);
+            }
+        }
+
+        //Set MyBag ( NoOfItems );
+        TextView NoOfItems = (TextView) findViewById(R.id.no_of_items);
+        NoOfItems.setText("MY BAG ("+Integer.toString(mItems.size())+")");
+
+        //Navigate to Cart Activity
+        LinearLayout myBag = (LinearLayout) findViewById(R.id.my_bag);
+        myBag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, ViewCartActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish(); // call this to finish the current activity
+            }
+        });
 
     }
 

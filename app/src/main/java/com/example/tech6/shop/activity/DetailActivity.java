@@ -170,6 +170,7 @@ public class DetailActivity extends ActionBarActivity  implements View.OnClickLi
             //Using carteasy - begin
 
             Carteasy cs = new Carteasy();
+            cs.add(myNewItem.getProductid(), "product id", myNewItem.getProductid());
             cs.add(myNewItem.getProductid(), "product name", myNewItem.getName());
             cs.add(myNewItem.getProductid(), "product desc", myNewItem.getDescription());
             cs.add(myNewItem.getProductid(), "product price", myNewItem.getPrice());

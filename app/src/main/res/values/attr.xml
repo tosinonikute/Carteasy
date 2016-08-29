@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <declare-styleable name="Options">
         <attr name="textColor" format="color" />
         <attr name="descriptionColor" format="color" />
+        <attr name="priceColor" format="color" />
+        <attr name="OtherDetailsColor" format="color" />
+        <attr name="productImage" format="reference"  />
     </declare-styleable>
+
+
 </resources>

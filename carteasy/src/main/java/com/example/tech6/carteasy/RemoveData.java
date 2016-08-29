@@ -28,10 +28,10 @@ public class RemoveData {
         JSONObject items = new JSONObject();
 
         ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
 
         // Create imageDir in applications default directory
-        File mypath = new File(directory, "test.json");
+        File mypath = new File(directory, Carteasy.carteasyFileName);
 
         if(mypath.exists()){
 
@@ -120,17 +120,17 @@ public class RemoveData {
 
 
     /* Remove Data by Id */
-    public void RemoveDataById(String mid, Context context){
+    public Boolean RemoveDataById(String mid, Context context){
 
         Boolean removed = false;
         /* Create a new JSON object items to store values */
         JSONObject items = new JSONObject();
 
         ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
 
         // Create imageDir in applications default directory
-        File mypath = new File(directory, "test.json");
+        File mypath = new File(directory, Carteasy.carteasyFileName);
 
         if(mypath.exists()){
 
@@ -207,13 +207,14 @@ public class RemoveData {
             Log.d("Carteasy: ", mid + "=>" + "=>removed");
         }
 
+        return removed;
     }
 
 
     /* Remove Data all data in Json file */
     public void ClearAllData(Context context){
         ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
-        new File(directory, "test.json").delete();
+        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
+        new File(directory, Carteasy.carteasyFileName).delete();
     }
 }

@@ -26,17 +26,18 @@ public class SaveData {
        Save function checkes if file exist, recieves data from User
        Appends it and saves into users default app data storage space.
     */
-    public void save(Context context, JSONObject items, String mid){
+    public void save(Context context, JSONObject items, String mid, JSONObject pro){
 
         /*
            This retrieves the file from default application data storage if it exist.
            If it doesn't It creates a new file.
         */
+
         ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
 
         // Create imageDir in applications default directory
-        File mypath = new File(directory, "test.json");
+        File mypath = new File(directory, Carteasy.carteasyFileName);
 
         if(mypath.exists()){
             JSONParser parser = new JSONParser();
@@ -45,35 +46,29 @@ public class SaveData {
                 // Get the JSON Object and loop through it.
                 Object obj = parser.parse(new FileReader(mypath));
                 JSONObject jsonObj = (JSONObject) obj;
-                if(!checkIfIdExist(mid, jsonObj)) {
-                    for (Object key : jsonObj.keySet()) {
 
+                    for (Object key : jsonObj.keySet()) {
                         //based on you key types
                         String keyStr = (String) key;
                         Object keyValue = jsonObj.get(keyStr);
 
                         if (keyValue instanceof JSONObject) {
-                            System.out.println("keyStr: " + keyStr);
-                            items.put(keyStr, keyValue);
+                            if(keyStr.toString().equals(mid.toString())){
+                                items.remove(keyStr);
+                                items.put(keyStr, pro);
+
+                            } else {
+                                items.put(keyStr, keyValue);
+                            }
                         }
                     }
 
-                    /*
-                      This writes to file in the user's default app data directory
-                    */
+                    //This writes to file in the user's default app data directory
                     FileWriter filez = new FileWriter(mypath);
                     filez.write(items.toJSONString());
                     filez.flush();
                     filez.close();
-
                     Log.d("Carteasy: ", "=>data_saved");
-
-                } else {
-
-                    //
-                }
-
-
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -84,7 +79,7 @@ public class SaveData {
             }
 
 
-        }else {
+        } else {
 
             try {
 

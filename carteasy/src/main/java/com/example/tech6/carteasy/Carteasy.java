@@ -14,6 +14,8 @@ import java.util.Map;
  */
 public class Carteasy {
 
+    public static String carteasyDirName = "carteasy";
+    public static String carteasyFileName = "test.json";
     private JSONObject items = new JSONObject();
     private JSONObject products = new JSONObject();
     private String uniqueId;
@@ -30,8 +32,8 @@ public class Carteasy {
 
         products.put(key, value);
         //Store in items
+        items.clear();
         items.put(id, products);
-
     }
 
 
@@ -39,7 +41,8 @@ public class Carteasy {
     public void commit(Context context){
         clearPreviousData(context);
         SaveData sd = new SaveData();
-        sd.save(context, items, uniqueId);
+        //System.out.println("helloworld " + items);
+        sd.save(context, items, uniqueId, products);
     }
 
 
@@ -69,11 +72,13 @@ public class Carteasy {
     }
 
     public Map ViewData(String mid, Context context){
+        clearPreviousData(context);
         GetData gd = new GetData();
         return gd.ViewById(mid, context);
     }
 
     public Map ViewAll(Context context){
+        clearPreviousData(context);
         GetData gd = new GetData();
         return gd.ViewAll(context);
     }
