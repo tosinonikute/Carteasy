@@ -35,25 +35,6 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-/*
-//        String[] arrayfruits = {"mango","orange", "peer","apple"};
-
-//        ArrayList<String> arrayfruits = new ArrayList<String>();
-//        arrayfruits.add("mango");
-//        arrayfruits.add("orange");
-//        arrayfruits.add("peer");
-//        arrayfruits.add("apple");
-
-        Map<String, String> arrayfruits = new HashMap<>();
-        arrayfruits.put("fruits","mango");
-
-
-        Carteasy cs = new Carteasy();
-        cs.clearPreviousData(getApplicationContext());
-        cs.add("d1","fruits", arrayfruits);
-        cs.commit(getApplicationContext()); */
-
-
         //Set a Toolbar to replace the ActionBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
