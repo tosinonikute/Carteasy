@@ -37,7 +37,7 @@
                 android:id="@+id/no_of_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MY BAG (1)"
+                android:text="MY BAG (0)"
                 android:textColor="#ffffff"
                 android:textSize="18sp"
                 android:padding="5dp"

@@ -49,7 +49,7 @@ public class ViewCartAdapter  extends RecyclerView.Adapter<ViewCartAdapter.ViewH
         viewHolder.mProductname.setText(ct.getName());
         viewHolder.mProductdesc.setText(ct.getDescription());
         viewHolder.mProductprice.setText("$" + Integer.toString(ct.getPrice()));
-        viewHolder.mProductthumbnail.setImageResource(ct.getThumbnail());
+        //viewHolder.mProductthumbnail.setImageResource(ct.getThumbnail());
 
         String mOtherDetails = "Size: " + ct.getSize() + "  Qty: " + Integer.toString(ct.getQuantity()) + "  Color: " + ct.getColor();
 

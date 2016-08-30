@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Created by tech6 on 11/2/15.
+ * Created by Tosin Onikute on 11/2/15.
  */
 public class RemoveData {
 
@@ -144,44 +144,12 @@ public class RemoveData {
                 /* Checks if both the ID and Key exist, if not print an Error message */
                 if(sd.checkIfIdExist(mid, jsonObj)) {
 
-                    for (Object key : jsonObj.keySet()) {
-
-                        //based on you key types
-                        String keyStr = (String) key;
-                        Object keyValue = jsonObj.get(keyStr);
-
-
-                        //for nested objects iteration if required
-                        if(keyValue instanceof JSONObject) {
-
-                            JSONObject products = new JSONObject();
-
-                                /* Loop the JSON object again for nested object */
-                            JSONObject newJsonObj = (JSONObject) keyValue;
-                            for (Object key2 : newJsonObj.keySet()) {
-
-                                //based on you key types
-                                String keyStr2 = (String) key2;
-                                Object keyValue2 = newJsonObj.get(keyStr2);
-
-                                //If this is true, It would not be added to the products JSONObject. So its removed
-                                if (keyStr.equals(mid)) {
-
-                                    removed = true; //If true, means ID and all pertaining data is removed
-
-                                } else {
-                                    products.put(keyStr2, keyValue2);
-                                }
-                            }
-                            items.put(keyStr, products);
-                        }
-
-                        //Push to file
-                        FileWriter filez = new FileWriter(mypath);
-                        filez.write(items.toJSONString());
-                        filez.flush();
-                        filez.close();
-                    }
+                    jsonObj.remove(mid);
+                    //Push to file
+                    FileWriter filez = new FileWriter(mypath);
+                    filez.write(jsonObj.toJSONString());
+                    filez.flush();
+                    filez.close();
 
                 } else {
                     Log.d("Carteasy: ", "Key does not exist");
@@ -197,7 +165,7 @@ public class RemoveData {
             }
 
 
-        }else {
+        } else {
 
             //Path does not exist
         }

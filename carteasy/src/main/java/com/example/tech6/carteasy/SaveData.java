@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Created by tech6 on 10/28/15.
+ * Created by Tosin Onikute on 10/28/15.
  */
 public class SaveData {
 

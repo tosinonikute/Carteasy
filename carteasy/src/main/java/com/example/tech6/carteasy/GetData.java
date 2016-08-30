@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *  Created by tech6 on 10/28/15.
+ *  Created by Tosin Onikute on 10/28/15.
  *
  *  This class takes care of retreiving data from JSON file and looping through it to return values to the user.
  *

@@ -8,7 +8,7 @@ import java.util.Map;
 
 
 /**
- * Created by tech6 on 10/19/15.
+ * Created by Tosin Onikute on 10/19/15.
  *
  * This Class is the main class which calls functions from other classes when neccessary to perform operations.
  */
@@ -18,6 +18,8 @@ public class Carteasy {
     public static String carteasyFileName = "test.json";
     private JSONObject items = new JSONObject();
     private JSONObject products = new JSONObject();
+
+
     private String uniqueId;
 
     /* check when user's app starts for the first time, it prompts carteasy to clear existing contents of the JSON file */
@@ -28,12 +30,14 @@ public class Carteasy {
 
     //This function Receive values as objects and ties them with an ID
     public void add(String id, String key, Object value){
+
         uniqueId = id;
 
         products.put(key, value);
         //Store in items
         items.clear();
         items.put(id, products);
+
     }
 
 
