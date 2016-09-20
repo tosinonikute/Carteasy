@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.carteasy.v1.sample.activity.MainActivity"
             android:label="@string/app_name" >
 
             <intent-filter>
@@ -29,11 +29,11 @@
         </activity>
 
         <activity
-            android:name=".activity.DetailActivity"
+            android:name="com.carteasy.v1.sample.activity.DetailActivity"
             android:label="@string/title_activity_detail" >
         </activity>
         <activity
-            android:name=".activity.ViewCartActivity"
+            android:name="com.carteasy.v1.sample.activity.ViewCartActivity"
             android:label="@string/title_activity_view_cart" >
         </activity>
 
