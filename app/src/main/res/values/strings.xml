@@ -13,4 +13,5 @@
     <string name="quantity">QUANTITY</string>
     <string name="add">ADD TO CART</string>
     <string name="title_activity_view_cart">ViewCart</string>
+    <string name="empty_cart">Your Cart is Empty</string>
 </resources>

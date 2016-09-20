@@ -84,7 +84,7 @@ public class SaveData {
                     filez.write(items.toJSONString());
                     filez.flush();
                     filez.close();
-                    Log.d("Carteasy: ", "=>data_saved");
+                    Log.d("Carteasy: ", "data saved");
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -125,10 +125,10 @@ public class SaveData {
         JSONObject items = new JSONObject();
 
         ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir("carteasy", Context.MODE_PRIVATE);
+        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
 
         // Create imageDir in applications default directory
-        File mypath = new File(directory, "test.json");
+        File mypath = new File(directory, Carteasy.carteasyFileName);
 
         if(mypath.exists()){
 
@@ -167,7 +167,7 @@ public class SaveData {
                                             keyValue2 = newvalue;
 
                                             /* Notify the user that it has been updated */
-                                            Log.d("Carteasy: ", mid + "=>" + mkey + "=>" + newvalue + "=>updated");
+                                            Log.d("Carteasy: ", mid + " => " + mkey + " => " + newvalue + " => updated");
 
                                         }
                                     }

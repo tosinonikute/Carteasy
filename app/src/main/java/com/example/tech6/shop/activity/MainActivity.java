@@ -52,8 +52,6 @@ public class MainActivity extends ActionBarActivity {
         mAdapter = new GridAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
-
-
         //Retrieve the cart details - begin
         Map<Integer, Map> data;
         Carteasy cs = new Carteasy();
@@ -84,6 +82,7 @@ public class MainActivity extends ActionBarActivity {
                 finish(); // call this to finish the current activity
             }
         });
+
 
     }
 

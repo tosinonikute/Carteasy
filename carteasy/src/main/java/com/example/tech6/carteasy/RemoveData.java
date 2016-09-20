@@ -88,7 +88,7 @@ public class RemoveData {
                                             mkeyFound = true;
 
                                             /* Notify the user that it has been updated */
-                                            Log.d("Carteasy: ", mid + "=>" + mkey + "=>" + "removed");
+                                            Log.d("Carteasy: ", mid + " => " + mkey + " => " + "removed");
                                         }
                                     }
 
@@ -187,7 +187,7 @@ public class RemoveData {
 
          /* Notify the user that it has been updated */
         if(removed.equals(true)) {
-            Log.d("Carteasy: ", mid + "=>" + "=>removed");
+            Log.d("Carteasy: ", mid + " => " + " => removed");
         }
 
         return removed;

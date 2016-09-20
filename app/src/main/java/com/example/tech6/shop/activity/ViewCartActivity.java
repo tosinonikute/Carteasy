@@ -31,7 +31,8 @@ public class ViewCartActivity extends ActionBarActivity {
     private RecyclerView.Adapter mAdapter;
     private TextView NoOfItems;
     private Button continuebutton;
-    private ImageView optionButton;
+    private ImageView emptyCart;
+    private TextView emptyCartText;
 
     private int id;
 
@@ -48,6 +49,9 @@ public class ViewCartActivity extends ActionBarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Calling the RecyclerView
+        mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+
 
         //Retrieve the cart details - begin
 
@@ -55,54 +59,69 @@ public class ViewCartActivity extends ActionBarActivity {
         Carteasy cs = new Carteasy();
         data = cs.ViewAll(getApplicationContext());
 
+        emptyCart = (ImageView) findViewById(R.id.empty_cart);
+        emptyCartText = (TextView) findViewById(R.id.empty_cart_text);
+        if(data == null || data.size() == 0) {
+            mRecyclerView.setVisibility(View.GONE);
+            emptyCart.setVisibility(View.VISIBLE);
+            emptyCartText.setVisibility(View.VISIBLE);
+        }
+
 
 
         mItems = new ArrayList<Cart>();
         Cart cartitem = new Cart();
-        for (Map.Entry<Integer, Map> entry : data.entrySet()) {
+        if(data != null && data.size() != 0) {
+            for (Map.Entry<Integer, Map> entry : data.entrySet()) {
 
-            //Retrieve the values of the Map by starting from index 0 - zero
+                //Retrieve the values of the Map by starting from index 0 - zero
 
-            cartitem = new Cart();
-            //Get the sub values of the Map
-            Map<String, String> innerdata = entry.getValue();
-            for (Map.Entry<String, String> entry2 : innerdata.entrySet()) {
-                System.out.println(entry2.getKey() + "=" + entry2.getValue());
+                cartitem = new Cart();
+                //Get the sub values of the Map
+                Map<String, String> innerdata = entry.getValue();
+                for (Map.Entry<String, String> innerEntry : innerdata.entrySet()) {
+                    System.out.println(innerEntry.getKey() + "=" + innerEntry.getValue());
 
-                String product = entry2.getKey();
-                switch (product) {
-                    case "product id":  cartitem.setProductid(entry2.getValue());
-                        break;
-                    case "product name":  cartitem.setName(entry2.getValue());
-                        break;
-                    case "product desc":  cartitem.setDescription(entry2.getValue());
-                        break;
-                    case "product qty":  cartitem.setQuantity(Integer.parseInt(entry2.getValue()));
-                        break;
-                    case "product size":  cartitem.setSize(entry2.getValue());
-                        break;
-                    case "product price":  cartitem.setPrice(Integer.parseInt(entry2.getValue()));
-                        break;
-                    case "product color":  cartitem.setColor(entry2.getValue());
-                        break;
-                    case "product thumbnail":  cartitem.setThumbnail(Integer.parseInt(entry2.getValue()));
-                        break;
+                    String product = innerEntry.getKey();
+                    switch (product) {
+                        case "product id":
+                            cartitem.setProductid(innerEntry.getValue());
+                            break;
+                        case "product name":
+                            cartitem.setName(innerEntry.getValue());
+                            break;
+                        case "product desc":
+                            cartitem.setDescription(innerEntry.getValue());
+                            break;
+                        case "product qty":
+                            cartitem.setQuantity(Integer.parseInt(innerEntry.getValue()));
+                            break;
+                        case "product size":
+                            cartitem.setSize(innerEntry.getValue());
+                            break;
+                        case "product price":
+                            cartitem.setPrice(Integer.parseInt(innerEntry.getValue()));
+                            break;
+                        case "product color":
+                            cartitem.setColor(innerEntry.getValue());
+                            break;
+                        case "product thumbnail":
+                            cartitem.setThumbnail(Integer.parseInt(innerEntry.getValue()));
+                            break;
+                    }
                 }
+                mItems.add(cartitem);
             }
-            mItems.add(cartitem);
         }
 
         //Set MyBag ( NoOfItems );
         NoOfItems = (TextView) findViewById(R.id.no_of_items);
         NoOfItems.setText("MY BAG ("+Integer.toString(mItems.size())+")");
 
-
-        System.out.println(mItems.get(0).getColor());
         //Retrieve the cart details - end
 
 
-        // Calling the RecyclerView
-        mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+
         mRecyclerView.setHasFixedSize(true);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

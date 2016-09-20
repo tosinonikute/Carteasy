@@ -64,14 +64,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
@@ -80,6 +72,14 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/bundles" />
@@ -90,14 +90,14 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/design/23.1.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/amplitudeintegration/1.5.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/localyticsintegration/1.5.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/mixpanelintegration/1.5.0/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/optimizely-core/1.5.0/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/optimizely-editor/1.5.0/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/optimizely-view/1.5.0/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/optimizely/1.5.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/optimizely-core/1.6.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/optimizely-editor/1.6.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/optimizely-view/1.6.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/optimizely/1.6.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.optimizely/universalanalyticsintegration/1.5.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-safeguard" />
@@ -118,25 +118,25 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="optimizely-view-1.5.0" level="project" />
     <orderEntry type="library" exported="" name="universalanalyticsintegration-1.5.0" level="project" />
+    <orderEntry type="library" exported="" name="optimizely-editor-1.6.1" level="project" />
     <orderEntry type="library" exported="" name="glide-3.6.0" level="project" />
     <orderEntry type="library" exported="" name="design-23.1.0" level="project" />
-    <orderEntry type="library" exported="" name="mixpanelintegration-1.5.0" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-24.1.1" level="project" />
     <orderEntry type="library" exported="" name="okhttp-3.2.0" level="project" />
-    <orderEntry type="library" exported="" name="optimizely-editor-1.5.0" level="project" />
+    <orderEntry type="library" exported="" name="mixpanelintegration-1.5.0" level="project" />
     <orderEntry type="library" exported="" name="localyticsintegration-1.5.0" level="project" />
     <orderEntry type="library" exported="" name="gson-2.6.2" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-23.1.0" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-23.4.0" level="project" />
+    <orderEntry type="library" exported="" name="optimizely-1.6.1" level="project" />
+    <orderEntry type="library" exported="" name="optimizely-shared-1.6.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="amplitudeintegration-1.5.0" level="project" />
     <orderEntry type="library" exported="" name="okio-1.6.0" level="project" />
-    <orderEntry type="library" exported="" name="optimizely-1.5.0" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-23.4.0" level="project" />
-    <orderEntry type="library" exported="" name="optimizely-shared-1.5.0" level="project" />
+    <orderEntry type="library" exported="" name="optimizely-core-1.6.1" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-23.1.0" level="project" />
-    <orderEntry type="library" exported="" name="optimizely-core-1.5.0" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-24.1.1" level="project" />
+    <orderEntry type="library" exported="" name="optimizely-view-1.6.1" level="project" />
     <orderEntry type="module" module-name="carteasy" exported="" />
   </component>
 </module>

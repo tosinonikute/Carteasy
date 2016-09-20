@@ -29,6 +29,25 @@ android:orientation="vertical">
 </android.support.v7.widget.Toolbar>
 
 
+    <ImageView
+        android:id="@+id/empty_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp"
+        android:paddingBottom="10dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_trash"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/empty_cart_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:text="@string/empty_cart"
+        android:visibility="gone"/>
+
      <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
            android:id="@+id/recycler_view"
            android:layout_width="wrap_content"
