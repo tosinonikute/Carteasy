@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.0"
 
     defaultConfig {
-        applicationId "com.example.tech6.shop"
+        applicationId "com.carteasy.v1.sample"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
@@ -29,7 +29,4 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.6.0'
     compile project(":carteasy")
 
-    compile('com.optimizely:optimizely:+@aar') {
-        transitive = true
-    }
 }
