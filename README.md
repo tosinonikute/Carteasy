@@ -6,7 +6,26 @@ A Shopping cart library for Android that allows you add to add items to cart and
 
 Add the following dependency to your build.gradle:
 
-//Dependecies will come here.
+//Dependencies will come here.
+
+// For Gradle
+ ```
+compile 'com.carteasy.v1.lib:carteasy:0.0.1'
+ ```
+
+//For Maven - include maven url to repositories in build.gradle (module)
+ ```
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url  "http://dl.bintray.com/tosinmath007/Carteasy"
+        }
+    }
+}
+ ```
+
+
 
 You should then checkout the library and investigate the sample code, which covers some of the features.
 

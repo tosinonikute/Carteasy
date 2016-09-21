@@ -1,0 +1,39 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.carteasy.v1.lib' // CREATE A GROUP ID FOR YOUR LIBRARY
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'com.carteasy.v1.lib' // CREATE A GROUP ID FOR YOUR LIBRARY
+                artifactId 'carteasy' // THE NAME OF YOUR MODULE
+
+                name 'carteasy' // YOUR LIBRARY NAME
+                description 'A Shopping cart library for Android that allows you add to add items to cart and retrieve at ease.' // YOUR LIBRARY DESCRIPTION
+                url 'https://github.com/iroko/carteasy' // YOUR SITE
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'TosinOnikute' //YOUR ID
+                        name 'Tosin Onikute' //YOUR NAME
+                        email 'tosinmath007@gmail.com' //YOUR EMAIL
+                    }
+                }
+                scm {
+                    connection 'https://github.com/iroko/carteasy.git' // YOUR GIT REPO
+                    developerConnection 'https://github.com/iroko/carteasy.git' // YOUR GIT REPO
+                    url 'https://github.com/iroko/carteasy' // YOUR SITE
+
+                }
+            }
+        }
+    }
+}

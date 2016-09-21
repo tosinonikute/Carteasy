@@ -26,3 +26,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile files('libs/json-simple-1.1.1.jar')
 }
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
