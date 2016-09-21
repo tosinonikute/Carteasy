@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 1. Carteasy
 
 A Shopping cart library for Android that allows you add to add items to cart and retrieve at ease.
@@ -205,3 +206,6 @@ Nothing here for now.
 *Credits*
 
 This library depends on json-simple-1.1.1
+=======
+# carteasy
+>>>>>>> 4a6e91cc97fb56b48218b875768f931b77da07ac
