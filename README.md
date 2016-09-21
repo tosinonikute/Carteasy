@@ -1,20 +1,20 @@
 
-1. Carteasy
+#Carteasy
 
    A Shopping cart library for Android that allows you add to add items to cart and retrieve at ease.
 
-2. Quick Start
+#Quick Start
 
-   Add the following dependency to your build.gradle:
+  Add the following dependency to your build.gradle:
 
   Dependencies will come here.
 
-  // For Gradle
+  For Gradle:
  ```
 compile 'com.carteasy.v1.lib:carteasy:0.0.1'
  ```
 
-  // For Maven - include maven url to repositories in build.gradle (module)
+  For Maven: include maven url to repositories in build.gradle (module)
  ```
 allprojects {
     repositories {
@@ -32,7 +32,7 @@ You should then checkout the library and investigate the sample code, which cove
 
 <image of sample app here>
 
-3. Usage
+ #Usage
 
  *Adding items to cart*
 
