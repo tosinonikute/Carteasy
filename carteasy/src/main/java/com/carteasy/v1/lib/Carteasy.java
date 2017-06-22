@@ -148,5 +148,10 @@ public class Carteasy {
         }
     }
 
+    public void clearCart(Context context){
+        RemoveData rm = new RemoveData();
+        rm.clearAllFromCart(context);
+    }
+
 
 }
