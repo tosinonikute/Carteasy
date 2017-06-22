@@ -1,9 +1,9 @@
 
-#Carteasy
+# Carteasy
 
    A Shopping cart library for Android that allows you add to add items to cart and retrieve at ease.
 
-#Quick Start
+## Quick Start
 
   Add the following dependency to your build.gradle:
 
@@ -32,7 +32,7 @@ You should then checkout the library and investigate the sample code, which cove
 
 <image of sample app here>
 
- #Usage
+## Usage
 
  *Adding items to cart*
 
@@ -151,6 +151,14 @@ You should then checkout the library and investigate the sample code, which cove
  Carteasy cs = new Carteasy();
  cs.RemoveId(String id, Context context);
  ```
+
+  *Clearing all items from cart*
+
+  ```
+  Carteasy cs = new Carteasy();
+  cs.clearCart(Context context);
+  ```
+
 
  *Viewing all items stored in cart*
 
