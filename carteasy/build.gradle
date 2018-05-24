@@ -2,14 +2,14 @@ apply plugin: 'com.android.library'
 
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.0"
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 27
+        versionCode 3
+        versionName "3.0"
     }
     repositories {
         mavenCentral()
@@ -20,11 +20,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile files('libs/json-simple-1.1.1.jar')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation files('libs/json-simple-1.1.1.jar')
 }
 
 apply from: 'install.gradle'
