@@ -14,6 +14,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import static com.carteasy.v1.lib.Carteasy.persist;
+
 /*
  * Copyright (C) 2015 The Android Open Source Project
  *
@@ -35,30 +37,19 @@ import java.io.IOException;
  */
 public class SaveData {
 
-    private Object updateReturnValue;
-
-
-    /*
-       Save function checkes if file exist, recieves data from User
-       Appends it and saves into users default app data storage space.
-    */
+    /* Save function checkes if file exist, recieves data from User
+       Appends it and saves into users default app data storage space. */
     public void save(Context context, JSONObject items, String mid, JSONObject pro){
 
-        /*
-           This retrieves the file from default application data storage if it exist.
-           If it doesn't It creates a new file.
-        */
-
-        ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
+        /* This retrieves the file from default application data storage if it exist.
+           If it doesn't It creates a new file. */
 
         // Create imageDir in applications default directory
-        File mypath = new File(directory, Carteasy.carteasyFileName);
+        File mypath = new File(Carteasy.getContextWrapper(context), Carteasy.carteasyFileName);
 
         if(mypath.exists()){
             JSONParser parser = new JSONParser();
             try {
-
                 // Get the JSON Object and loop through it.
                 Object obj = parser.parse(new FileReader(mypath));
                 JSONObject jsonObj = (JSONObject) obj;
@@ -94,15 +85,12 @@ public class SaveData {
                 e.printStackTrace();
             }
 
-
         } else {
 
             try {
 
-                /*
-                   This assumes the file does not exist.
-                   So It creates a new file.
-                */
+                /* This assumes the file does not exist.
+                   So It creates a new file. */
                 FileWriter filez = new FileWriter(mypath);
                 filez.write(items.toJSONString());
                 filez.flush();
@@ -115,10 +103,7 @@ public class SaveData {
 
     }
 
-
-    /*
-        UpdateValue function iterates through the existing data and updates a value based on its key and id
-    */
+    // UpdateValue function iterates through the existing data and updates a value based on its key and id
     public void updateValue(String mid, String mkey, Object newvalue, Context context){
 
         /* Create a new JSON object items to store values */
@@ -148,7 +133,6 @@ public class SaveData {
                             String keyStr = (String) key;
                             Object keyValue = jsonObj.get(keyStr);
 
-
                             //for nested objects iteration if required
                             if(keyValue instanceof JSONObject) {
 
@@ -168,7 +152,6 @@ public class SaveData {
 
                                             /* Notify the user that it has been updated */
                                             Log.d("Carteasy: ", mid + " => " + mkey + " => " + newvalue + " => updated");
-
                                         }
                                     }
                                     products.put(keyStr2, keyValue2);
@@ -186,10 +169,10 @@ public class SaveData {
                     } else {
                         Log.d("Carteasy: ", "Key does not exist");
                     }
+
                 } else {
                     Log.d("Carteasy: ", "ID does not exist");
                 }
-
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -199,20 +182,13 @@ public class SaveData {
                 e.printStackTrace();
             }
 
-
-        }else {
-
+        } else {
             //Path does not exist
         }
-
     }
 
-
-
-    /*
-       checkIfKeyExist function checks if a key exist already, so as not add multiple keys in same ID
-       For example: adding productname twice for id => 1234
-    */
+    /* checkIfKeyExist function checks if a key exist already, so as not add multiple keys in same ID
+       For example: adding productname twice for id => 1234 */
     public Boolean checkIfKeyExist(String mid, String mkey, JSONObject jsonObj) {
 
         Boolean exist = false;
@@ -222,12 +198,9 @@ public class SaveData {
             //based on you key types
             String keyStr = (String) key;
             Object keyvalue = jsonObj.get(keyStr);
-
-
             if (keyStr.equals(mid)) {
                 found = true;
             }
-
             if (keyvalue instanceof JSONObject) {
                 if(found.equals(true)) {
                     JSONObject newJsonObj = (JSONObject) keyvalue;
@@ -235,12 +208,10 @@ public class SaveData {
                         //based on you key types
                         String keyStr2 = (String) key2;
                         Object keyvalue2 = newJsonObj.get(keyStr2);
-
                         //return value
                         if (keyStr2.equals(mkey)) {
                             exist = true;
                         }
-
                     }
                     found = false;
                 }
@@ -249,20 +220,13 @@ public class SaveData {
         return exist;
     }
 
-
-    /*
-       checkIfIdExist function checks if an ID exist, so as to prevent multiple Ids
-     */
+    /* checkIfIdExist function checks if an ID exist, so as to prevent multiple Ids */
     public Boolean checkIfIdExist(String mid, JSONObject jsonObj) {
-
         Boolean exist = false;
-
         for (Object key : jsonObj.keySet()) {
             //based on you key types
             String keyStr = (String) key;
             Object keyValue = jsonObj.get(keyStr);
-
-
             if (keyStr.equals(mid)) {
                 exist = true;
             }
@@ -270,8 +234,21 @@ public class SaveData {
         return exist;
     }
 
+    public void persist(Context context, boolean status){
+        File mypath = new File(Carteasy.getContextWrapper(context), Carteasy.settingsFileName);
+        try {
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put(Carteasy.persist, status);
+            //This writes to file in the user's default app data directory
+            FileWriter filez = new FileWriter(mypath);
+            filez.write(jsonObj.toJSONString());
+            filez.flush();
+            filez.close();
 
-
-
-
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

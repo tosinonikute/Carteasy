@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,23 +40,16 @@ import java.util.Map;
  */
 public class GetData {
 
-    private Boolean nested = false;
     private Object returnValue;
     private Object printJsonValue;
 
-
-    /*
-       getFile function looks for the file and passes it to the printJsonObject function which loops through it and
-       displays the content of the file.
-     */
+    /* getFile function looks for the file and passes it to the printJsonObject function which loops through it and
+       displays the content of the file. */
     public Object getFile(String mid, String mkey, Context context) {
 
         returnValue = "";
-        ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
-
         // Create imageDir in applications default directory
-        File mypath = new File(directory, Carteasy.carteasyFileName);
+        File mypath = new File(Carteasy.getContextWrapper(context), Carteasy.carteasyFileName);
         JSONParser parser = new JSONParser();
         try {
 
@@ -73,11 +67,8 @@ public class GetData {
         return returnValue;
     }
 
-
-    /*
-       printJsonObject function recieves file from getFile function and picks the file as an object and loop
-       through it based on the key and values given.
-     */
+    /* printJsonObject function recieves file from getFile function and picks the file as an object and loop
+       through it based on the key and values given. */
     public Object printJsonObject(String mid, String mkey, JSONObject jsonObj) {
 
         printJsonValue = "";
@@ -102,13 +93,11 @@ public class GetData {
                             printJsonValue = keyvalue2;
                         }
                     }
-
                 }
             }
         }
         return printJsonValue;
     }
-
 
     /*
        View function returns a array of values based on id given
@@ -124,11 +113,8 @@ public class GetData {
         /* Create a new JSON object items to store values */
         JSONObject items = new JSONObject();
 
-        ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
-
         // Create imageDir in applications default directory
-        File mypath = new File(directory, Carteasy.carteasyFileName);
+        File mypath = new File(Carteasy.getContextWrapper(context), Carteasy.carteasyFileName);
 
         if(mypath.exists()){
 
@@ -148,7 +134,6 @@ public class GetData {
                         String keyStr = (String) key;
                         Object keyValue = jsonObj.get(keyStr);
 
-
                         //for nested objects iteration if required
                         if(keyValue instanceof JSONObject) {
 
@@ -164,20 +149,16 @@ public class GetData {
 
                                     //Cast the value to String
                                     String strValue = String.valueOf(keyvalue2);
-
                                     newItems.put(keyStr2, strValue);
-
                                 }
                                 return newItems;
                             }
                         }
-
                     }
 
                 } else {
                     Log.d("Carteasy: ","Key does not exist");
                 }
-
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -187,23 +168,16 @@ public class GetData {
                 e.printStackTrace();
             }
 
-
         } else {
 
             //Path does not exist
         }
-
         return null;
     }
 
-
-
-    /*
-      ViewAll returns all values the values saved for example:
-      id , productname, product_desc, isbn_no, qunatity e.t.c
-    */
+    /* ViewAll returns all values the values saved for example:
+      id , productname, product_desc, isbn_no, qunatity e.t.c */
     public Map ViewAll(Context context){
-
 
         Map<Integer, Map> mainItems = new HashMap<Integer, Map>();
         int count = 0;
@@ -211,11 +185,8 @@ public class GetData {
         /* Create a new JSON object items to store values */
         JSONObject items = new JSONObject();
 
-        ContextWrapper cw = new ContextWrapper(context);
-        File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
-
         // Create imageDir in applications default directory
-        File mypath = new File(directory, Carteasy.carteasyFileName);
+        File mypath = new File(Carteasy.getContextWrapper(context), Carteasy.carteasyFileName);
 
         if(mypath.exists()){
 
@@ -248,15 +219,11 @@ public class GetData {
 
                             //Cast the value to String
                             String strValue = String.valueOf(keyValue2);
-
                             newItems.put(keyStr2, strValue);
-
                         }
-
                         mainItems.put(count, newItems);
                         count++;
                     }
-
                 }
                 return mainItems;
 
@@ -268,16 +235,39 @@ public class GetData {
                 e.printStackTrace();
             }
 
-
         } else {
 
             //Path does not exist
         }
-
         return null;
     }
 
+    public Boolean getPersistStatus(Context context){
+        Boolean status = false;
+        File mypath = new File(Carteasy.getContextWrapper(context), Carteasy.settingsFileName);
+        JSONParser parser = new JSONParser();
+        if(mypath.exists()) {
+            try {
+                Object obj = parser.parse(new FileReader(mypath));
+                JSONObject jsonObj = (JSONObject) obj;
+                for (Object key : jsonObj.keySet()) {
+                    String keyStr = (String) key;
+                    if (keyStr.equals(Carteasy.persist)) {
+                        Object keyValue = jsonObj.get(keyStr);
+                        if (keyValue.equals(true)) {
+                            status = true;
+                        }
+                    }
+                }
 
-
-
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return status;
+    }
 }

@@ -1,9 +1,18 @@
 package com.carteasy.v1.lib;
 
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.util.Log;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Map;
 
 /*
@@ -30,31 +39,24 @@ import java.util.Map;
 public class Carteasy {
 
     public static String carteasyDirName = "carteasy";
-    public static String carteasyFileName = "test.json";
+    public static String carteasyFileName = "items.json";
+    public static String settingsFileName = "settings.json";
+    public static String persist = "persist";
     private JSONObject items = new JSONObject();
     private JSONObject products = new JSONObject();
-
-
     private String uniqueId;
 
     /* check when user's app starts for the first time, it prompts carteasy to clear existing contents of the JSON file */
     public static boolean applaunched = false;
 
-
-
-
     //This function Receive values as objects and ties them with an ID
     public void add(String id, String key, Object value){
-
         uniqueId = id;
-
         products.put(key, value);
         //Store in items
         items.clear();
         items.put(id, products);
-
     }
-
 
     //This function calls the commit function in SaveData Class to save user's input to file.
     public void commit(Context context){
@@ -63,8 +65,7 @@ public class Carteasy {
         sd.save(context, items, uniqueId, products);
     }
 
-
-    //This function retreives objects value by given id and key and displays it
+    //This function retrieves objects value by given id and key and displays it
     public Object get(String id, String key, Context context){
         GetData gd = new GetData();
         return gd.getFile(id, key, context);
@@ -81,7 +82,6 @@ public class Carteasy {
         RemoveData rm = new RemoveData();
         rm.RemoveDataByKey(mid, mkey, context);
     }
-
 
     //This function removes data based on any key specified by the user
     public void RemoveId(String mid, Context context){
@@ -101,9 +101,7 @@ public class Carteasy {
         return gd.ViewAll(context);
     }
 
-
     /** This functions below will retrieve data and typecast it before returning it the user **/
-
     public String getString(String id, String key, Context context){
         String value = "";
         value = (String) get(id, key, context);
@@ -141,9 +139,10 @@ public class Carteasy {
     }
 
     public void clearPreviousData(Context context){
-        if(applaunched == false){
+        if(applaunched == false && !isPersistEnabled(context)){
             RemoveData rm = new RemoveData();
             rm.ClearAllData(context);
+            persistData(context, false);
             applaunched = true;
         }
     }
@@ -153,5 +152,18 @@ public class Carteasy {
         rm.clearAllFromCart(context);
     }
 
+    public void persistData(Context context, boolean status){
+        SaveData sd = new SaveData();
+        sd.persist(context, status);
+    }
 
+    public static File getContextWrapper(Context context){
+        ContextWrapper cw = new ContextWrapper(context);
+        return cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
+    }
+
+    public Boolean isPersistEnabled(Context context){
+        GetData gd = new GetData();
+        return gd.getPersistStatus(context);
+    }
 }
