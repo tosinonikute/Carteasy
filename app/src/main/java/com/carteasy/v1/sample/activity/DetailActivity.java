@@ -3,7 +3,7 @@ package com.carteasy.v1.sample.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +23,7 @@ import com.carteasy.v1.sample.model.Items;
 import java.util.ArrayList;
 
 
-public class DetailActivity extends ActionBarActivity  implements View.OnClickListener{
+public class DetailActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button addtocart;
     private Toolbar toolbar;
@@ -179,6 +179,7 @@ public class DetailActivity extends ActionBarActivity  implements View.OnClickLi
             cs.add(myNewItem.getProductid(), "product qty", myNewItem.getQuantity());
             cs.add(myNewItem.getProductid(), "product color", myNewItem.getColor());
             cs.commit(getApplicationContext());
+            cs.persistData(getApplicationContext(), false);
 
             //Using carteasy - end
 

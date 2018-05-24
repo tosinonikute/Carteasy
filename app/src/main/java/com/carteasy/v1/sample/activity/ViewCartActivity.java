@@ -3,7 +3,7 @@ package com.carteasy.v1.sample.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-public class ViewCartActivity extends ActionBarActivity {
+public class ViewCartActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private RecyclerView.LayoutManager mLayoutManager;
