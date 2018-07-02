@@ -11,7 +11,7 @@
 
   For Gradle:
  ```
-compile 'com.carteasy.v1.lib:carteasy:0.0.1'
+implementation 'com.carteasy.v1.lib:carteasy:0.0.3'
  ```
 
   For Maven: include maven url to repositories in build.gradle (module)
@@ -71,6 +71,12 @@ You should then checkout the library and investigate the sample code, which cove
  cs.add(productIdTwo, "currency", "dollar");
  ...
  cs.commit(getApplicationContext());
+ ```
+
+ *Always keep data even when app is closed*
+
+  ```
+cs.persistData(getApplicationContext(), true);
  ```
 
 
