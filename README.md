@@ -202,6 +202,26 @@ You should then checkout the library and investigate the sample code, which cove
   }
   ```
 
+  *To persist data even when the app is closed, set persistData to True*
+
+  ```
+  Carteasy cs = new Carteasy();
+  cs.persistData(Context context, boolean true);
+  ```
+
+  *To Stop persist data, , set persistData to False*
+
+  ```
+ Carteasy cs = new Carteasy();
+ cs.persistData(Context context, boolean false);
+ ```
+
+ *Check isPersistEnabled*
+
+ ```
+ Carteasy cs = new Carteasy();
+ cs.isPersistEnabled(Context context);
+ ```
 
 
 
