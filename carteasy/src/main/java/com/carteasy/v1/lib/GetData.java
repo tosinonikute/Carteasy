@@ -172,7 +172,7 @@ public class GetData {
 
             //Path does not exist
         }
-        return null;
+        return newItems;
     }
 
     /* ViewAll returns all values the values saved for example:
@@ -239,7 +239,7 @@ public class GetData {
 
             //Path does not exist
         }
-        return null;
+        return mainItems;
     }
 
     public Boolean getPersistStatus(Context context){
