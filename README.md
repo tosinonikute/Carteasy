@@ -11,7 +11,7 @@
 
   For Gradle:
  ```
-implementation 'com.carteasy.v1.lib:carteasy:0.0.3'
+implementation 'com.carteasy.v1.lib:carteasy:0.0.4'
  ```
 
   For Maven: include maven url to repositories in build.gradle (module)
@@ -190,21 +190,13 @@ cs.persistData(getApplicationContext(), true);
  *Viewing all items stored which is tied to an ID*
 
   ```
-  Map<Integer, Map> data;
   Carteasy cs = new Carteasy();
-  data = cs.ViewData(String id, Context context);
+  Map<String, String> data = cs.ViewData(String id, Context context);
 
-  for (Map.Entry<Integer, Map> entry : data.entrySet()) {
+  for (Map.Entry<String, String> entry : data.entrySet()) {
      //get the Id
      Log.d("Key: ",entry.getKey());
      Log.d("Value: ",entry.getValue());
-
-     //Get the items tied to the Id
-     Map<String, String> innerdata = entry.getValue();
-     for (Map.Entry<String, String> innerentry : innerdata.entrySet()) {
-         Log.d("Inner Key: ",innerentry.getKey());
-         Log.d("Inner Value: ",innerentry.getValue());
-     }
   }
   ```
 
