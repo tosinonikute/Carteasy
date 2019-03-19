@@ -177,9 +177,6 @@ public class RemoveData {
     /* Clear All data from Cart */
     public void clearAllFromCart(Context context){
 
-          /* Create a new JSON object items to store values */
-        JSONObject items = new JSONObject();
-
         ContextWrapper cw = new ContextWrapper(context);
         File directory = cw.getDir(Carteasy.carteasyDirName, Context.MODE_PRIVATE);
 
@@ -187,35 +184,20 @@ public class RemoveData {
         File mypath = new File(directory, Carteasy.carteasyFileName);
 
         if(mypath.exists()){
-
-            JSONParser parser = new JSONParser();
             try {
-
-                Object obj = parser.parse(new FileReader(mypath));
-                JSONObject jsonObj = (JSONObject) obj;
-
-                for (Object key : jsonObj.keySet()) {
-                    //based on you key types
-                    String keyStr = (String) key;
-                    jsonObj.remove(keyStr);
-                    //Push to file
-                    FileWriter filez = new FileWriter(mypath);
-                    filez.write(jsonObj.toJSONString());
-                    filez.flush();
-                    filez.close();
-                }
+                FileWriter filez = new FileWriter(mypath);
+                filez.write(new JSONObject().toJSONString());
+                filez.flush();
+                filez.close();
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (ParseException e) {
-                e.printStackTrace();
             }
 
         } else {
-
-            //Path does not exist
+            // Path does not exist
         }
     }
 

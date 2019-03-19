@@ -104,7 +104,7 @@ public class GetData {
        This works best if the user specify for example:  user specifies id as 1243, and productname as key,
        It returns the respective Value of the key.
     */
-    public Map ViewById(String mid, Context context){
+    public Map<String, String> ViewById(String mid, Context context){
 
         //http://stackoverflow.com/questions/22606572/android-json-parsing-of-multiple-jsonobjects-inside-jsonobject?rq=1
 
@@ -177,7 +177,7 @@ public class GetData {
 
     /* ViewAll returns all values the values saved for example:
       id , productname, product_desc, isbn_no, qunatity e.t.c */
-    public Map ViewAll(Context context){
+    public Map<Integer, Map> ViewAll(Context context){
 
         Map<Integer, Map> mainItems = new HashMap<Integer, Map>();
         int count = 0;

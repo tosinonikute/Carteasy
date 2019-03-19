@@ -89,13 +89,13 @@ public class Carteasy {
         rm.RemoveDataById(mid, context);
     }
 
-    public Map ViewData(String mid, Context context){
+    public Map<String, String> ViewData(String mid, Context context){
         clearPreviousData(context);
         GetData gd = new GetData();
         return gd.ViewById(mid, context);
     }
 
-    public Map ViewAll(Context context){
+    public Map<Integer, Map> ViewAll(Context context){
         clearPreviousData(context);
         GetData gd = new GetData();
         return gd.ViewAll(context);
