@@ -11,7 +11,7 @@
 
   For Gradle:
  ```
-implementation 'com.carteasy.v1.lib:carteasy:0.0.4'
+implementation 'com.carteasy.v1.lib:carteasy:0.0.5'
  ```
 
   For Maven: include maven url to repositories in build.gradle (module)
