@@ -12,7 +12,7 @@
 
   For Gradle:
  ```
-implementation 'com.carteasy.v1.lib:carteasy:0.0.5'
+implementation 'com.carteasy.v1.lib:carteasy:0.0.6'
  ```
 
   For Maven: include maven url to repositories in build.gradle (module)
@@ -64,6 +64,7 @@ You should then checkout the library and investigate the sample code, which cove
  cs.add(productIdOne, "quantity", 5);
  cs.add(productIdOne, "currency", "dollar");
  ...
+ cs.commit(getApplicationContext());
 
  cs.add(productIdTwo, "product name", "Starbucks coffee");
  cs.add(productIdTwo, "product description", "coffee bags");
@@ -222,7 +223,11 @@ cs.persistData(getApplicationContext(), true);
  cs.isPersistEnabled(Context context);
  ```
 
+ *doesIDExistInCart*
 
+ ```
+ boolean value = cs.doesIDExistInCart(String id, Context context);
+ ```
 
 *Caveats*
 
