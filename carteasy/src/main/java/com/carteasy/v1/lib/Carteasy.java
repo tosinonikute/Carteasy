@@ -138,6 +138,10 @@ public class Carteasy {
         return value;
     }
 
+    public boolean doesIDExistInCart(String id, Context context){
+        return new GetData().doesIdExist(id, context);
+    }
+
     public void clearPreviousData(Context context){
         if(applaunched == false && !isPersistEnabled(context)){
             RemoveData rm = new RemoveData();

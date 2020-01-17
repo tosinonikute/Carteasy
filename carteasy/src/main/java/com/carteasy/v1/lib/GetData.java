@@ -270,4 +270,29 @@ public class GetData {
         }
         return status;
     }
+
+    public Boolean doesIdExist(String mid, Context context){
+
+        // Create fileDir in applications default directory
+        final File myPath = new File(Carteasy.getContextWrapper(context), Carteasy.carteasyFileName);
+
+        if(myPath.exists()){
+            JSONParser parser = new JSONParser();
+            try {
+
+                final Object obj = parser.parse(new FileReader(myPath));
+                final JSONObject jsonObj = (JSONObject) obj;
+                return new SaveData().checkIfIdExist(mid, jsonObj);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
 }
