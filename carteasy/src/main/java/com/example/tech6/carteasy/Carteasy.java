@@ -18,6 +18,7 @@ public class Carteasy {
     Boolean nested = false;
     Object returnvalue;
 
+    //Receive values as objects and typecast to appropriate type
     public void add(String id, String key, Object value){
 
         //if Value is Double
@@ -62,11 +63,13 @@ public class Carteasy {
     }
 
 
+    //Get objects value by given id and key
     public Object get(String id, String key){
         return printJsonObject(id, key, items);
     }
 
 
+    //Print json objects by given id and key
     public Object printJsonObject(String mid, String mkey, JSONObject jsonObj) {
 
         for (Object key : jsonObj.keySet()) {
@@ -93,17 +96,37 @@ public class Carteasy {
         return returnvalue;
     }
 
+    //Check if an item exist
     public void checkIfExist(){
 
     }
 
-    public void remove(){
+    //Remove any item from the stored object
+    public void remove(String id, String key){
 
     }
 
+    //Remove all items
+    public void removeAll(){
+
+    }
+
+    //Modify a particular item and change it values
     public void modify(String id, String key, Object newvalue){
 
     }
+
+    //List all items saved and return them all as an array
+    public void viewAll(){
+
+    }
+
+    //List item saved with an id and return it as an array
+    public void view(String id, String key){
+
+    }
+
+
 
 
 
